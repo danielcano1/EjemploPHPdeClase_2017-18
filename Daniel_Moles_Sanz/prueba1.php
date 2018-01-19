@@ -26,7 +26,7 @@
     $valor1 = 12 ;
     $valor2 = 17 ;
     swap($valor1, $valor2);
-    echo $valor1." ".$valor2;
+    echo $valor1." ".$valor2 ;
     
     
     

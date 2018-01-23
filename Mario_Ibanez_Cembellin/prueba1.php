@@ -1,7 +1,7 @@
 <?php
 echo "PRIMER PHP DE EJEMPLO: Mario Ibañez";
 echo "<hr/>";
-//EJEMPLO DE FUNCIONES 19-Enero
+//EJEMPLO DE FUNCIONES 19-Enero-2018
 $resultado = 0;
 function doble($valor1){
     $resultado = 2 * $valor1;

@@ -27,6 +27,17 @@
     swap($valor1, $valor2);
     echo "<br/> " . $valor1 . " ".$valor2;
     
+    //VARIABLES GLOBALES
+    function encadenar ($numero, $caracterParaRellenar){
+        global $texto; 
+        for($i=0;$i<$numero;$i++){
+            $texto .= $caracterParaRellenar;     
+        }
+        
+    }
+    $texto="Hola";
+    encadenar(12, "d");
+    echo $texto."</br>";
     
     
     

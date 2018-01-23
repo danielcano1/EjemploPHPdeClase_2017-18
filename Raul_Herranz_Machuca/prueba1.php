@@ -22,4 +22,21 @@
         swap($valor1, $valor2);
         echo "<br/> " . $valor1 . " " . $valor2;
         
+        function potencia($base, $exponente=2){
+            $valor=1;
+            for($i=1;$i<=$exponente;$i++){
+                $valor*=$base;
+            }
+            return $valor;
+        }
+        echo potencia(2,3); //Escribe 8
+        echo potencia(4);   //Escribe 16
+        
+        global $texto;
+        function encadenar($numero, $caracterParaRellenar){
+            for ($i=0;$i<=$numero;$i++){
+                $texto.=$caracterRelleno;
+            }
+        }
+        
 ?>

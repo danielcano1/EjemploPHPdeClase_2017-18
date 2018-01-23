@@ -1,5 +1,5 @@
 <?php
-echo "PRIMER PHP DE EJEMPLO: Daniel Cano";
+echo "PRIMER PHP DE EJEMPLO: Mario Ibañez";
 echo "<hr/>";
 //EJEMPLO DE FUNCIONES
 $resultado = 0;

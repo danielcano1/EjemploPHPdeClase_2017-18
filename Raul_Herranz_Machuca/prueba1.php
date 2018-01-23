@@ -1,6 +1,6 @@
 <?php
     echo "PRIMER PHP DE EJEMPLO: Raul Herranz";
-    //ejemplo de funciones
+    //ejemplo de funciones y de commit
     
     function doble($valor1){
         $resultado = 2 * $valor1;

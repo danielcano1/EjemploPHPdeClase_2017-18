@@ -28,14 +28,16 @@
     echo "<br/> " . $valor1 . " ".$valor2;
     
     //VARIABLES GLOBALES
-    global $texto;
-    
     function encadenar ($numero, $caracterParaRellenar){
-        for($i=0;$i<numero;$i++){
+        global $texto; 
+        for($i=0;$i<$numero;$i++){
             $texto .= $caracterParaRellenar;     
         }
         
     }
+    $texto="Hola";
+    encadenar(12, "d");
+    echo $texto."</br>";
     
     
     

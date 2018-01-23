@@ -22,8 +22,8 @@ function swap(&$x, &$y){
     $y = $aux;
 }
 
-$valor1=12;
-$valor2=17;
+$valor1=82;
+$valor2=77;
 swap($valor1, $valor2);
 echo "<br/> " . $valor1 . " ".$valor2;
 

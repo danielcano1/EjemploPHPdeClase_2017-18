@@ -1,4 +1,4 @@
 <?php
-    echo "PRIMER PHP DE EJEMPLO: David Cruz";
+    echo "PRIMER PHP DE EJEMPLO: David Cruz Garcia";
     
 ?>

@@ -14,6 +14,6 @@ $resultado1 = doble($var1);
 echo "<br/> la variabe '$resultado' es: " . $resultado;
 echo "<br/> El doble de " . $var1 . " es " . $resultado1;
 echo "<br/> El doble de 15 es: " . doble(15);
-echo "<br/> El dobde del doble de 15 es " . doble(doble(15));
+echo "<br/> El dbde del doble de 15 es " . doble(doble(15));
 
 ?>

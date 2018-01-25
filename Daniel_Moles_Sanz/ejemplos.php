@@ -23,7 +23,7 @@ function encadenar($numero,$caracterRelleno){
     }
     
 }
-$texto="Hola";
+$texto="Hola ";
 encadenar(12, "d");
 echo $texto."<br/>";
 encadenar(9, "+-");

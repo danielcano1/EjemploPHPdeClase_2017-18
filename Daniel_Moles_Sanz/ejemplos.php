@@ -13,10 +13,11 @@ echo "<hr/>";
 
 echo "Variables Globlales"."<br/>";
 
-global $texto;
+
 
 
 function encadenar($numero,$caracterRelleno){
+    global $texto;
     for ($i = 1; $i <= $numero; $i++) {
         $texto.=$caracterRelleno;
     }
@@ -27,4 +28,27 @@ encadenar(12, "d");
 echo $texto."<br/>";
 encadenar(9, "+-");
 echo $texto."<br/>";
+echo "<hr/>";
+
+echo "Variables Estaticas"."<br/>";
+
+function estatica(){
+    static $cuenta=0;
+    $cuenta++;
+    echo "Esta es la llamada numero $cuenta<br/>";
+}
+
+for ($i=1;$i<=10;$i++){
+    estatica();    
+}
+
+echo "<hr/>";
+
+echo "Recursividad"."<br/>";
+
+function factorial($n){
+    if($n<=1) return 1;
+    else return $n*factorial($n-1);
+}
+echo factorial(5);
 ?>

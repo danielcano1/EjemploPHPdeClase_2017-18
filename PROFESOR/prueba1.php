@@ -39,6 +39,21 @@
     encadenar(12, "d");
     echo $texto."</br>";
     
+    function estatica(){
+        static $cuenta=0;
+        $cuenta++;
+        echo "<br/>Esta es la llamada " . $cuenta;
+        
+    }
     
+    for($i=1;$i<=10;$i++){
+        estatica();
+    }
     
+    function factorial($n){
+        if($n<=0) return 1;
+        else return $n*factorial($n-1);
+    }
+    
+    echo factorial(5);
 ?>

@@ -14,15 +14,16 @@ echo potencia(2,3) . " <br/> "; // no te coge el exponente ya que le das como va
 echo potencia(4); // te coge el exponente que vale 2
 
 
-echo "<hr/>"
+echo "<hr/>";
 //Variables Gobales
-function encadenar ($numero,$caracterRelleno){
+function encadenar($numero, $caracterRelleno){
     global $texto;
-    for($=1;$i<=$numero;$i++){
-        $texto.=$caracterRelleno;    
-    }   
+    for($i=1;$i<=$numero;$i++){
+        $texto .= $caracterRelleno;
+    }
 }
-$texto="Hola";
+
+$texto="Holia";
 encadenar (12,"d");
 echo $texto."<br/>"; //Escribe holaddddddddddd
 encadenar (9,"+-");

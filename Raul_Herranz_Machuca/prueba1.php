@@ -32,11 +32,36 @@
         echo potencia(2,3); //Escribe 8
         echo potencia(4);   //Escribe 16
         
-        global $texto;
-        function encadenar($numero, $caracterParaRellenar){
-            for ($i=0;$i<=$numero;$i++){
-                $texto.=$caracterRelleno;
+        //VARIABLES GOBALES
+        
+        
+        function encadenar ($numero, $caracterParaRellenar){
+            global $texto;
+            for($i=0;$i<$numero;$i++){
+                $texto.= $caracterParaRellenar;
             }
+            
+        }
+        $texto="hola";
+        encadenar (12,"d");
+        echo $texto."<br/>"; //Escribe holadddddddddddd
+        encadenar(9,"+-");
+        echo $texto."<br/>"; //Escribe hola+-+-+-+-+-+-+-+-+-
+        
+        //VARIABLES ESTATICAS
+        
+        function estatica(){
+            static $cuenta=0;
+            $cuenta++;
+            echo "Esta es la llamada numero $cuenta<br/>";
+        }
+        for($i=1;$i<=10;$i++){
+            estatica();
         }
         
+        function factorial($n){
+            if($n<=0) return 1; //condicion de salida
+            else return $n*factorial($n-1);
+        }
+        echo factorial(5);
 ?>

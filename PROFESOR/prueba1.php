@@ -50,10 +50,59 @@
         estatica();
     }
     
+    //RECURSIVIDAD
     function factorial($n){
-        if($n<=0) return 1;
-        else return $n*factorial($n-1);
+        if($n<=0) {
+            return 1;
+        }
+        else{
+            $resultado = $n*factorial($n-1);
+            return $resultado;
+        }
     }
     
-    echo factorial(5);
+    echo "<br/> El factorial de 5 es: " . factorial(5);
+    
+    //PRIMOS CON RECURSIVIDAD
+    function esUnNumeroPrimo($primo){
+        return  esPrimo($primo,$primo);
+        
+    }
+    
+    
+    function esPrimo($primo,$divisor){
+        if ($primo <= $divisor){
+            $divisor = $primo - 1; 
+        }
+               
+        if ($divisor <= 1) return true;
+        else {
+            $resto = $primo % $divisor;
+            if ($resto == 0)return false;
+            else{
+                return esPrimo($primo, $divisor - 1);
+            }
+        }
+    }
+    
+    $numero=11;
+    if (esUnNumeroPrimo($numero)) echo "<br/> El $numero es un n&uacutemero primo";
+    else echo "<br/> El $numero NO es un n&uacutemero primo";
+    
+    echo "<hr/><br/>";
+    //ARRAYS
+    $numero = array(17, 34, 3=>45, 2, 7=>9, 10=> -5, 7);
+    
+    $desplazamiento = 0;
+    for ($i=0; $i<(count($numero)+$desplazamiento); $i++){
+        if(isset($numero[$i])){
+            echo $numero[$i] . "<br/>";
+        }else{
+            
+            $desplazamiento++;
+        }
+    }
+    
+    
+    
 ?>

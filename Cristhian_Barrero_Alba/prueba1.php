@@ -16,4 +16,16 @@ echo "<br/> El doble de " . $var1 . " es " . $resultado1;
 echo "<br/> El doble de 15 es: " . doble(15);
 echo "<br/> El dbde del doble de 15 es " . doble(doble(15));
 
+function swap(&$x,&$y){
+    $aux=$x;
+    $x=$y;
+    $y=$aux;
+}
+
+$valor1 = 12 ;
+$valor2 = 17 ;
+swap($valor1, $valor2);
+echo $valor1." ".$valor2 ;
+
+
 ?>

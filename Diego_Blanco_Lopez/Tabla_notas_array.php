@@ -52,6 +52,7 @@
         
         echo calcularMedia($notaALUMNOS,"SMR",1); 
         echo calcularMedia($notaALUMNOS,"DAW",1); 
+        
         ?>
     </body>
 

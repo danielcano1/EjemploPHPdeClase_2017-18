@@ -43,13 +43,16 @@ echo "Cantidad de niveles en DAW:" .count($notaAlumno["DAW"]) . "<br/>";
 echo "Cantidad de alumnos en 3 de SMR:" .count($notaAlumno["SMR"][3]) . "<br/>";
 echo "Cantidad de alumnos en 1 de SMR:" .count($notaAlumno["SMR"][1]) . "<br/>";
 
+function calcularMedia($notaAlumno,$curso,$nivel){
 $notaTotal=0;
 foreach ($notaAlumno["SMR"][1] as $nombre => $nota){
         $notaTotal=$notaTotal+$nota;
+        $notaMEDIASMR=$notaTotal/count($notaAlumno["SMR"][1]);
+    }
+
+    echo "nota media $notaMEDIASMR";
+
 }
+echo calcularMedia($notaAlumno,"DAW",1);
 
-$notaMEDIASMR=$notaTotal/count($notaAlumno["SMR"][1]);
-echo "La nota media de 1 de SMR es: $notaMEDIASMR";
-
-echo "Actu";
 

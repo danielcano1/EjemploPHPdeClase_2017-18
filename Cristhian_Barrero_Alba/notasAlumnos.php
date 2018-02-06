@@ -13,6 +13,7 @@ $notaAlumno["DAW"][2]["ANTONIO"]=8;
 $notaAlumno["DAW"][1]["CRISTINA"]=9;
 $notaAlumno["ASIR"][2]["SUSANA"]=2;
 
+
 echo "<table><th>Curso</th>
 <th>Nivel</th>
 <th>Nombre</th>

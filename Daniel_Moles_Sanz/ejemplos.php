@@ -74,6 +74,7 @@ foreach ($nota as $i=>$v){
 }
 
 echo "<hr/>";
+echo "Arrays Multidimensionales"."<br/>";
 
 //$nota2[0]=9;
 //$nota2[1]=7;
@@ -94,7 +95,9 @@ $notaA[1][1][1]="]";
 echo $notaA[1][1][0]." ".$notaA[0][0][0]." ".$notaA[0][1][0]." ".$notaA[1][1][1]."<br/>";
 echo $notaA[1][1][0]." ".$notaA[0][0][1]." ".$notaA[0][1][0]." ".$notaA[1][1][1]."<br/>";
 echo $notaA[0][1][1]." ".$notaA[0][0][1]." ".$notaA[1][1][0].$notaA[0][1][0].$notaA[1][1][1]."<br/>";
+
 echo "<hr/>";
+
 $saludos[0]="Hola";
 $saludos[1]="Adios";
 $nombres[0]="Pepe";
@@ -114,5 +117,11 @@ $todos[1]=$reglas;
 echo $todos[1][1][0]." ".$todos[0][0][0]." ".$todos[0][1][0]." ".$todos[1][1][1]."<br/>";
 echo $todos[1][1][0]." ".$todos[0][0][1]." ".$todos[0][1][0]." ".$todos[1][1][1]."<br/>";
 echo $todos[0][1][1]." ".$todos[0][0][1]." ".$todos[1][1][0].$todos[0][1][0].$todos[1][1][1]."<br/>";
+
+echo "<hr/>";
+
+$tabla[][][][]="";
+
+
 
 ?>

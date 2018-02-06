@@ -76,4 +76,45 @@
                 $desplazamiento++;
             }
         }
+        
+        //ARRAYS CON FOREACH
+        $notaA=array("Antonio"=>5, 4, 7, 5=>6, "Luis"=>9, 2, "Berta"=>7);
+        foreach ($notaA as $i=>$v){
+            echo "La nota de $i es $v <br/>";
+        }
+        //ARRAYS MULTIDIMENSIONALES
+        $nota2[0]=9;
+        $nota2[1]=7;
+        $nota1[0]=$nota2;
+        $nota1[0][1];
+        echo $nota1[0][1];
+        
+        $nota[0][0][0]="hola";
+        $nota[0][0][1]="adios";
+        $nota[0][1][0]="pepe";
+        $nota[0][1][1]="juan";
+        $nota[1][0][0]="fin";
+        $nota[1][0][1]="inigo";
+        $nota[1][1][0]="[";
+        $nota[1][1][1]="]";
+        
+        echo $nota[0][0][0]." ".$nota[0][1][0]." </br>" ;
+        
+        $saludos[0]="hola";
+        $saludos[1]="adios";
+        $nombres[0]="pepe";
+        $nombres[1]="juan";
+        $estados[0]="fin";
+        $estados[1]="inicio";
+        $extremos[0]="[";
+        $extremos[1]="]";
+        $conversacion[0]=$saludos;
+        $conversacion[1]=$nombres;
+        $reglas[0]=$estados;
+        $reglas[1]=$extremos;
+        $todo[0]=$conversacion;
+        $todo[1]=$reglas;
+        
+        echo $todo[0][0][0]." ".$todo[0][1][0]." </br>" ;
+        
 ?>

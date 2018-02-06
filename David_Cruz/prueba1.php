@@ -45,4 +45,23 @@ $texto="Hola";
 encadenar(12, "d");
 echo $texto."</br>";
 
+function factorial($n){
+    if ($n<=1) {
+        return 1;
+    }else{
+        return $n*factorial($n-1);
+    }
+}
+echo factorial(5);
+echo "</br></br>";
+
+$desplazamiento=0;
+$numero=array(17, 34, 3=>45, 2, 7=>9,10=>-5, 7);
+for($i=0; $i<(count($numero)+$desplazamiento); $i++){
+    if(isset($numero[$i])){
+        echo $numero[$i]."</br>";
+    }else{
+        $desplazamiento++;
+    }
+}
 ?>

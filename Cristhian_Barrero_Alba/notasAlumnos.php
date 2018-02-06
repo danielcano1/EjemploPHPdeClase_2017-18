@@ -51,5 +51,5 @@ foreach ($notaAlumno["SMR"][1] as $nombre => $nota){
 $notaMEDIASMR=$notaTotal/count($notaAlumno["SMR"][1]);
 echo "La nota media de 1 de SMR es: $notaMEDIASMR";
 
-
+echo "Actu";
 

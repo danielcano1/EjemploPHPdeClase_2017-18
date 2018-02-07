@@ -35,20 +35,14 @@ echo "Cantidad de niveles en SMR: " . count ($tabla["SMR"]) . "<br/>";
 echo "Cantidad de niveles en ASIR: " . count ($tabla["ASIR"]) . "<br/>";
 echo "Cantidad de niveles en DAW: " . count ($tabla["DAW"]) . "<br/>";
 echo "Cantidad de alumnos en 3 de SMR: " . count ($tabla["SMR"][3]) . "<br/>";
-//function medias($tabla [$curso][$nivel]){
-//    $suma=0;
-//    foreach ($tabla["$curso"][$nivel] as $nombre => $nota){
-//        echo $nombre . " ha sacado un " . $nota . "<br/>";
-//        $suma=$suma + $nota;
-//        
-//    }
-//}
-$suma=0;
-foreach ($tabla["SMR"][1] as $nombre => $nota){
+function medias($tabla,$curso,$nivel){
+    $suma=0;
+    foreach ($tabla["$curso"][$nivel] as $nombre => $nota){
         echo $nombre . " ha sacado un " . $nota . "<br/>";
         $suma=$suma + $nota;
-        $numNotas=count();
-        
+        $numNotas=count($tabla[$curso][$nivel]);
+    }
         $media=$suma / ($nota);
-        echo $media;
+        return $media;    
 }
+echo medias($tabla,"DAW",1);

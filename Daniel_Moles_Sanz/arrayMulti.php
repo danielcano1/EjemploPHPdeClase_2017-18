@@ -47,13 +47,14 @@ function calcularMedia($notasAlumno,$curso,$nivel){
     $suma=0;
     foreach ($notasAlumno[$curso][$nivel] as $nombre => $nota){
         $suma=$nota+$suma;
-        $numNotas=count($notasAlumno[$curso][$nivel]);
-        
+        $numNotas=count($notasAlumno[$curso][$nivel]);   
     }
     $media=$suma/$numNotas;
-    return $media;
+    return "Las nota media es ".$media;
 }
 
-echo calcularMedia($notasAlumno,"DAW",1);
+echo calcularMedia($notasAlumno,"SMR",1);
+
+
 
 

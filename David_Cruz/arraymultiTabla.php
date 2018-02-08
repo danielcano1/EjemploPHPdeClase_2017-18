@@ -35,16 +35,16 @@ echo "El numero de niveles en DAW es ".count($notaAlumnos["DAW"])."<br/>";
 echo "En primero de SMR hay ".count($notaAlumnos["SMR"][1])." alumnos <br/>";
 echo "En segundo de SMR hay ".count($notaAlumnos["SMR"][2])." alumnos <br/>";
 echo "En tercero de SMR hay ".count($notaAlumnos["SMR"][3])." alumnos <br/>";
-function media($curso, $nivel){
+function media($array, $curso, $nivel){
     $sumatorio=0;
-    foreach ($notaAlumnos["$curso"][$nivel] as $nombre=>$nota){
+    foreach ($array["$curso"][$nivel] as $nombre=>$nota){
             $sumatorio=$sumatorio+$nota;
     }
-    $numAlumnos=count($notaAlumnos[$curso][$nivel]);
+    $numAlumnos=count($array[$curso][$nivel]);
     $media=$sumatorio/$numAlumnos;
     return "La media de ".$nivel." de ".$curso." es ".$media;
 }
-echo media($curso, $nivel);
+echo media($notaAlumnos, $curso, $nivel);
 echo "<br/><br/>";
 
 ?>

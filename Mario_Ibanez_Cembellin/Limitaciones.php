@@ -8,6 +8,9 @@ $intentos=0;
 
 
 if(isset($_GET["usuario"]) && isset($_GET["pass"])){
+    $intentos=$_COOKIE["VecesAcceso"]
+    
+    
     if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
         echo "Hola bienvenido";
     }

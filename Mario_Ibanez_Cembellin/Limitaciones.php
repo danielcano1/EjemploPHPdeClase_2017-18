@@ -32,16 +32,13 @@ if(isset($_GET["usuario"]) && isset($_GET["pass"]))
         }
     }
      
-    
-
-          
+         
 
 // funcion cookie es menor que tres
     function grabarIntentoCookie(){
         global $sesionIntentada;
         setcookie("grabar",$sesionIntentada);
-    }
-    
+    }  
     
 //HTML FORMULARIO ACCESO
     

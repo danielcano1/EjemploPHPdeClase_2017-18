@@ -29,9 +29,9 @@ function insertarArray($equipo,$escudo,$puntos){
 function CargarDatosEnTabla($equipos){
     echo "<table border='1'>
         <tr>
-            <th>Equipo</th>
-            <th>Escudo</th>
-            <th>Puntos</th>
+            <th>Escudo</th>            
+            <th><a href='biwengerOrdenacion.php?ORDENA=Eq'>Equipo</a></th>
+            <th><a href='biwengerOrdenacion.php?ORDENA=Puntos'>Puntos</a></th>
         <tr>
 ";
     while(current($equipos)){
@@ -47,7 +47,6 @@ function CargarDatosEnTabla($equipos){
     
 }
 
-echo CargarDatosEnTabla($equipos);
 
 $partidos["Real Madrid"]["Sevilla-RM"]="3-2";
 $partidos["Real Madrid"]["Barcelona-RM"]="2-2";
@@ -83,4 +82,28 @@ $partidos["Bilbao"]["Bilbao-Getafe"]="2-3";
 //           }
 //      }
 //}
+
+if (isset($_GET["ORDENA"])){
+    $Ordena=$_GET["ORDENA"];
+    
+    if ($Ordena=="Eq"){
+        ksort($equipos);
+        reset($equipos);
+        CargarDatosEnTabla($equipos);
+    } else {
+        reset($equipos);
+        asort($equipos, SORT_NUMERIC);
+        
+        reset($equipos);
+        CargarDatosEnTabla($equipos);
+    }
+    
+} else {
+    CargarDatosEnTabla($equipos);
+}
+
+
+echo "El total de equipos es: ".count($equipos);
+
+
 

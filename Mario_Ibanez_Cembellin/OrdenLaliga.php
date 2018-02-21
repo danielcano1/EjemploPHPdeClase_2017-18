@@ -34,7 +34,7 @@ function cargarDatosTabla($equipos){
         <th><a href='OrdenLaLiga.php?ordena=equipos'>Equipo</a></th>
         <th>Escudo</th>
         <th><a href='OrdenLaLiga.php?ordena=Puntos'>Puntos</a></th>";
-    while(current($equipos)){
+    while(current($equipos)){ //comprubea si el current de equipos esta vacio
         echo "<tr>";
         $escudos = current($equipos); // la imagen y puntos
         echo "<td>".key($equipos)."</td>"; //nombre del equipo

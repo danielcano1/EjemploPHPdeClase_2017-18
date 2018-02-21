@@ -6,17 +6,36 @@ $intentos=0;
 
 
 if(isset($_GET["usuario"]) && isset($_GET["pass"])){
+<<<<<<< HEAD
     
     
     
     if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
         echo "Hola bienvenido";
+=======
+    if($_COOKIE["VecesAcceso"]<=3){
+   
+        if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
+            echo "Hola bienvenido";
+        }
+        else{
+            echo "Error";
+               $intetos=$intentos+1;
+               numeroDeIntentos();
+        }   
+>>>>>>> branch 'master' of https://github.com/danielcano1/EjemploPHPdeClase_2017-18
     }
+<<<<<<< HEAD
     else{
         echo "Error";
            $intetos=$intentos+1;
     }
     numeroDeIntentos();
+=======
+    else 
+            echo "Numero de intentos Maximos";
+                setcookie("VecesAcceso",4,time()+1);
+>>>>>>> branch 'master' of https://github.com/danielcano1/EjemploPHPdeClase_2017-18
 }
 
            

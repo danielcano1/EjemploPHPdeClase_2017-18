@@ -2,7 +2,7 @@
 echo "<form action='Liga.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
-        Puntos: <input type='text' name='puntos'/> 
+        Puntos: <input type='text' name='puntos'/>
         <input type='submit' value='Enviar'/>
       </form>";
 
@@ -18,8 +18,8 @@ if (isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
     $puntos=$_GET["puntos"];
     insertarEquipo($equipo,$escudo,$puntos);
     
-
-
+    
+    
 }
 
 function insertarEquipo($equipo,$escudo,$puntos){
@@ -30,7 +30,7 @@ function insertarEquipo($equipo,$escudo,$puntos){
 
 
 function cargarDatosTabla($equipos){
-  echo "<table border='1'>
+    echo "<table border='1'>
         <th>Equipo</th>
         <th>Escudo</th>
         <th>Puntos</th>";
@@ -44,7 +44,22 @@ function cargarDatosTabla($equipos){
         next($equipos); // vas saltoando de equipo en equipo
         
     }
-        echo "</table>";
+    echo "</table>";
 }
 echo cargarDatosTabla($equipos);
 
+//No se puede hacer 
+$partidos["Betis"]["Bet-Cel"]="3-1";
+$partidos["Betis"]["Bet-Mal"]="2-1";
+$partidos["Levante"]["Lev-Atm"]="4-4";
+$partidos["Levante"]["Lev-Rso"]="1-2";
+$partidos["Villareal"]["Vil-Atm"]="0-1";
+$partidos["Villareal"]["Vil-Val"]="1-1";
+$partidos["Alaves"]["Alv-Leg"]="1-2";
+$partidos["Alaves"]["Alv-Dep"]="0-0";
+
+
+echo "<form action='Liga.php' method='get'>
+        <input type='submit' value='Siguiente'/>
+         <input type='submit' value='Anterior'/>
+      </form>";

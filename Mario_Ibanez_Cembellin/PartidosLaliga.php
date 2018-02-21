@@ -56,7 +56,7 @@ $partidos["Levante"]["Lev-Rso"]="1-2";
 $partidos["Villareal"]["Vil-Atm"]="0-1";
 $partidos["Villareal"]["Vil-Val"]="1-1";
 $partidos["Alaves"]["Alv-Leg"]="1-2";
-$partidos["Alaves"]["Alv-Dep"]="0-0";
+$partidos["Alaves"]["Alv-Dp"]="0-0";
 
 
 echo "<form action='Liga.php' method='get'>

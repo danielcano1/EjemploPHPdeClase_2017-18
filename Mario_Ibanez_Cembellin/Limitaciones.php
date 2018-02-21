@@ -3,12 +3,10 @@
 $nombreproyecto = "Limitaciones.php";
 $intentos=0;
 
-//HTML FORMULARIO ACCESO
-
 
 
 if(isset($_GET["usuario"]) && isset($_GET["pass"])){
-    $intentos=$_COOKIE["VecesAcceso"]
+    
     
     
     if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
@@ -18,6 +16,7 @@ if(isset($_GET["usuario"]) && isset($_GET["pass"])){
         echo "Error";
            $intetos=$intentos+1;
     }
+    numeroDeIntentos();
 }
 
            
@@ -31,7 +30,7 @@ function numeroDeIntentos(){
 }
     
     
-  
+//HTML FORMULARIO ACCESO
     
 echo "<form action='" . $nombreproyecto . "' method='get'>
         Usuario: <input type='text' name='usuario'/>

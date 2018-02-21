@@ -8,13 +8,20 @@ $intentos=0;
 
 
 if(isset($_GET["usuario"]) && isset($_GET["pass"])){
-    if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
-        echo "Hola bienvenido";
+    if($_COOKIE["VecesAcceso"]<=3){
+   
+        if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
+            echo "Hola bienvenido";
+        }
+        else{
+            echo "Error";
+               $intetos=$intentos+1;
+               numeroDeIntentos();
+        }   
     }
-    else{
-        echo "Error";
-           $intetos=$intentos+1;
-    }
+    else 
+            echo "Numero de intentos Maximos";
+                setcookie("VecesAcceso",4,time()+1);
 }
 
            

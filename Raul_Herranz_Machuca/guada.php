@@ -1,5 +1,4 @@
 <?php
-<?php
 $sitios["Azuqueca"]["Mujeres"]=6500;
 $sitios["Azuqueca"]["Hombres"]=2500;
 $sitios["Cabanillas"]["Mujeres"]=5500;
@@ -60,4 +59,4 @@ function total_generos($sitios,$sexo){
     return $total_sexos;
 }
 
-function porcentaje($array, $sexo){
+//function porcentaje($array, $sexo){

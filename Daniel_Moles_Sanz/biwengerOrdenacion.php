@@ -68,3 +68,4 @@ if (isset($_GET["ORDENA"])){
 
 
 echo "El total de equipos es: ".count($equipos);
+?>

@@ -10,6 +10,22 @@ echo "<form>
         Puntos: <input type='text' name='puntos'/>
      </form>";
 
+if (isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
+{
+    $equipo=$_GET["equipo"];
+    $escudo=$_GET["escudo"];
+    $puntos=$_GET["puntos"];
+    insertarTeam($equipo,$escudo,$puntos);
+    
+    
+    
+}
+
+function insertarTeam($equipo,$escudo,$puntos){
+    global $equipos;
+    $equipos[$equipo][$escudo]=$puntos;
+}
+
 function cargarDatosTabla($equipos){
     echo "<table border='1'>
             <tr>

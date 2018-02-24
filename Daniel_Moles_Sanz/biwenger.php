@@ -51,7 +51,7 @@ function CargarDatosEnTabla($equipos){
     
 }
 
-
+//Arrays Partidos 
 $partidos["Sevilla-RM"]="3-2";
 $partidos["Barcelona-RM"]="2-2";
 $partidos["Barcelona-Valencia"]="3-2";

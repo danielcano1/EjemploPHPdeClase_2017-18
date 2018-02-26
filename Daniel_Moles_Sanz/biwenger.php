@@ -1,5 +1,9 @@
 <?php
+$numeroIncremento=0;
+$numeroDecremento=0;
 $fila=0;
+
+setcookie("fila",$fila);
 echo "<form action='biwenger.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
@@ -47,42 +51,19 @@ function CargarDatosEnTabla($equipos){
     
 }
 
+//Arrays Partidos 
+$partidos["Sevilla-RM"]="3-2";
+$partidos["Barcelona-RM"]="2-2";
+$partidos["Barcelona-Valencia"]="3-2";
+$partidos["Barcelona-Betis"]="5-2";
+$partidos["Atletico-Valencia"]="3-2";
+$partidos["Valencia-RM"]="2-2";
+$partidos["Bilbao-Valencia"]="5-2";
+$partidos["Bilbao-Getafe"]="2-3";
 
-$partidos["Real Madrid"]["Sevilla-RM"]="3-2";
-$partidos["Real Madrid"]["Barcelona-RM"]="2-2";
-$partidos["Barcelona"]["Barcelona-Valencia"]="3-2";
-$partidos["Barcelona"]["Barcelona-Betis"]="5-2";
-$partidos["Valencia"]["Atletico-Valencia"]="3-2";
-$partidos["Valencia"]["Valencia-RM"]="2-2";
-$partidos["Bilbao"]["Bilbao-Valencia"]="5-2";
-$partidos["Bilbao"]["Bilbao-Getafe"]="2-3";
 
 
-//echo "<form action='biwenger.php' method='get'>
-//          <input type='hidden' value='obtenerPunteroFila()' name='fila'/>
-//           <input type='submit' value='Anterior' name='movimiento' />
-//          <input type='submit' value='Siguiente' name='movimiento'/>
-//      </form>";
-//$nombrePartidos=current($partidos);
-
-//function obtenerPunteroFila(){
-//    return $fila;
-//}
-//if (isset($_GET["movimiento"])){ 
-//    $movimiento=$_GET["movimiento"];       
-//        if ($movimiento == "Anterior"){
-//            $fila=$_GET["fila"]-1;
-//            echo $fila;
-//            echo key($nombrePartidos)." ".current($nombrePartidos);
-//            prev($partidos) ;
-//        } else {
-//            if ($movimiento == "Siguiente"){
-//                echo key($nombrePartidos)." ".current($nombrePartidos);
-//                next($partidos);
-//           }
-//      }
-//}
-
+//Ordenar Equipos
 if (isset($_GET["ORDENA"])){
     $Ordena=$_GET["ORDENA"];
     
@@ -103,7 +84,40 @@ if (isset($_GET["ORDENA"])){
 }
 
 
-echo "El total de equipos es: ".count($equipos);
+echo "El total de equipos es: ".count($equipos)."</br>";
 
 
+//Botones Siguiente y Anterior
+echo "<form action='biwenger.php' method='get'>
+          <input type='hidden' value='obtenerPunteroFila()' name='fila'/>
+           <input type='submit' value='Anterior' name='movimiento' />
+          <input type='submit' value='Siguiente' name='movimiento'/>
+      </form>";
 
+if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
+    $movimiento=$_GET["movimiento"];
+    $fila=$_COOKIE["fila"];
+    if ($movimiento == "Anterior"){
+        $fila=$fila-1;
+        setcookie("fila",$fila);
+        reset($partidos);
+        for ($numeroIncremento = 2; $numeroIncremento <= $fila ;$numeroIncremento++){
+            next($partidos);
+        }
+        echo key($partidos)." ".current($partidos);
+        
+    } else {
+        if ($movimiento == "Siguiente"){
+            $fila++;
+            setcookie("fila",$fila);
+            for ($numeroIncremento = 2; $numeroIncremento <= $fila ;$numeroIncremento++){
+                next($partidos);
+            }
+            echo key($partidos)." ".current($partidos);
+            
+        }
+    }
+}
+
+
+//

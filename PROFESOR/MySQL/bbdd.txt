@@ -1,0 +1,7 @@
+Vanguardia de Adanto|Ixalan|RSC/XLN/vanguardiadeadanto.jpg|2008-11-10|1;
+Elemental de Aire|Ixalan|RSC/XLN/elementaldeaire.jpg|2008-11-11|2;
+Diacono Ungido|Ixalan|RSC/XLN/diaconoungido.jpg|2008-11-12|3;
+Merodeadores de Angrath|Ixalan|RSC/XLN/merodeadoresdeangrath.jpg|2008-11-13|4;
+Brontodon anciano|Ixalan|RSC/XLN/brontondonanciano.jpg|2008-11-14|5;
+Almirante Beckett Azófar|Ixalan|RSC/XLN/almirantebeckettazofar.jpg|2008-11-15|6;
+Alas improvisadas|Ixalan|RSC/XLN/alasimprovisadas.jpg|2008-11-16|7

@@ -20,6 +20,7 @@
     $USUARIO="sergio";
     $PASS="sergio1234";
     $BBDD="sergio";
+    
     */
     include "functions.php";
     include "createTable.php";

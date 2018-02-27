@@ -8,13 +8,13 @@ echo "<form action='liga.php' method='get'>
 
 if(isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
 {
-
+    
     $equipo=$_GET["equipo"];
     $escudo=$_GET["escudo"];
     $puntos=$_GET["puntos"];
     
     echo añadirEquipo($equipo,$escudo,$puntos);
-
+    
 }
 
 function añadirEquipo($equipo,$escudo,$puntos){
@@ -46,8 +46,9 @@ function cargarDatosTabla($equipos){
 echo cargarDatosTabla($equipos);
 echo "<br/>";
 
-//Se necesita JavaScript para lo de abajo.
+//Manejo de equipos y partidos
 echo "<form action='liga.php' method='get'>
+        <input type='hidden' value='puntos()' name='fila'/>
         <input type='submit' value='Anterior' name='listado'/>
         <input type='submit' value='Siguiente' name='listado'/>
       </form>";
@@ -60,6 +61,37 @@ $partidos["Villareal"]["Villareal - Atleti"]="0-2";
 $partidos["Villareal"]["Sevilla - Villareal"]="2-2";
 $partidos["Alaves"]["Alaves - Malaga"]="2-2";
 $partidos["Alaves"]["Celta - Alaves"]="4-4";
+
+if (isset($_GET["listado"]) && isset($_COOKIE["fila"])){
+    $listado=$_GET["listado"];
+    $fila=$_COOKIE["fila"];
+    if ($listado == "Anterior"){
+        $fila=$fila-1;
+        setcookie("fila",$fila);
+        reset($partidos);
+        for ($incremento = 2;$incremento <= $fila ; $incremento++){
+            next($partidos);
+        }
+        echo key($partidos) . " " .current($partidos);
+    } else {
+        if ($listado == "Siguiente"){
+            $fila++;
+            setcookie("fila",$fila);
+            for ($incremento = 2; $incremento <= $fila ; $incremento++){
+                next($partidos);
+            }
+            echo key($partidos) . " " .current($partidos);
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 
 

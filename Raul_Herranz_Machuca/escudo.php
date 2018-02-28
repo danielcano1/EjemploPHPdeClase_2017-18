@@ -8,6 +8,7 @@ echo "<form>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
         Puntos: <input type='text' name='puntos'/>
+        <input type='submit' value='Enviar'/>
      </form>";
 
 if (isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
@@ -45,5 +46,31 @@ function cargarDatosTabla($equipos){
     }
     echo "</table>";
 }
+
+if (isset($_GET["ordena"]))
+{
+    $nombvariable=$_GET["ordena"];
+    
+    if ($nombvariable=='puntos'){
+        echo  $nombvariable;
+        ksort($equipos);
+        reset($equipos); //vuelve el puntero arriba
+        cargarDatosTabla($equipos);
+    }
+    else{
+        reset($equipos);
+        asort($equipos);
+        reset($equipos);
+        cargarDatosTabla($equipos);
+    }
+    
+} else{
+    cargarDatosTabla($equipos);
+}
+
+
+
+echo "Los equipos so " .count($equipos);
+
 cargarDatosTabla($equipos);
 ?>

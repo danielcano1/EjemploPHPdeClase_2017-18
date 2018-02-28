@@ -1,7 +1,7 @@
 <?php
 //VARIABLES GLOBALES
 $fila=0;
-$nombreArchivoPHP = "EjemploSiguienteAnterior_Cookie.php";
+$nombreArchivoPHP = "siguienteanterior.php";
 
 $permisoParaIrAAnterior = false;
 $permisoParaIrASiguiente = false;
@@ -106,6 +106,9 @@ if (isset($_GET["ORDENA"])){
 
 //FUNCIONES
 
+
+
+
 function grabarCookieFilaActualEquipos(){
     //GRABAMOS LA NUEVA POSICION EN LA COOKIE
     global $fila;
@@ -153,7 +156,7 @@ function CargarDatosEnTabla($equipos){
     echo "<table border='1'>
         <tr>
             <th>Escudo</th>
-            <th><a href='" . $nombreArchivoPHP . "?ORDENA=Eq'>Equipo</a></th>
+            <th>Equipo</th>
             <th><a href='" . $nombreArchivoPHP . "?ORDENA=Puntos'>Puntos</a></th>
         <tr>
     ";

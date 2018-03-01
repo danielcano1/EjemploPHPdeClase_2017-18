@@ -9,14 +9,14 @@ $equipos["Valencia"]["https://www.ligafutbol.net/wp-content/2009/04/valenciacf.j
 $equipos["Sevilla"]["https://www.ligafutbol.net/wp-content/2009/04/sevilla_fc.gif"]=15;
 $equipos["Espayol"]["https://www.ligafutbol.net/wp-content/2009/04/espanyol_rcd.gif"]=5;
 
-$partidos["Betis"]["Betis - Valencia"]="2-0";
-$partidos["Betis"]["Madrid - Betis"]="1-0";
-$partidos["Levante"]["Levante - Depor"]="0-0";
-$partidos["Levante"]["Barsa - Levante"]="3-0";
-$partidos["Villareal"]["Villareal - Atleti"]="0-2";
-$partidos["Villareal"]["Sevilla - Villareal"]="2-2";
-$partidos["Alaves"]["Alaves - Malaga"]="2-2";
-$partidos["Alaves"]["Celta - Alaves"]="4-4";
+$partidos["Atleti"]["Atleti - Valencia"]="2-0";
+$partidos["Atleti"]["Madrid - Atleti"]="1-0";
+$partidos["Valencia"]["Valencia - Depor"]="0-0";
+$partidos["Valencia"]["Barsa - Valencia"]="3-0";
+$partidos["Sevilla"]["Villareal - Sevilla"]="0-2";
+$partidos["Sevilla"]["Sevilla - Villareal"]="2-2";
+$partidos["Espayol"]["Espayol - Malaga"]="2-2";
+$partidos["Espayol"]["Espayol - Alaves"]="4-4";
 
 //Parametros IFS
 //Añadir un equipo
@@ -29,6 +29,44 @@ if(isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
     
     echo añadirEquipo($equipo,$escudo,$puntos);
     
+}
+
+
+//Para desplazarse
+if(isset($_GET["listado"]) && isset($_GET["posicion"])){
+    
+    if ($_GET["listado"] == "Anterior"){
+        $fila= $_GET["posicion"] - 1;
+    }else{
+        $fila= $_GET["posicion"] + 1;
+    }
+    
+    if ($fila <= 0){
+        $fila = 0;
+        $permisoAnterior = false;
+    }else{
+        $permisoAnterior = true;
+    }
+    
+    if ($fila + 1 >= count($equipos)){
+        $fila = count($equipos) - 1;
+        $permisoSiguiente = false;
+    }else{
+        $permisoSiguiente = true;
+    }
+    
+    grabarCookie();
+}else{
+    if (count($equipos) > 0){
+        if ($fila < count($equipos)){
+            $permisoSiguiente = true;
+        }else{
+            $permisoSiguiente = false;
+        }
+    }else{
+        $permisoSiguiente = false;
+    }
+    grabarCookie();
 }
 
 //Ordenar
@@ -45,7 +83,7 @@ if(isset($_GET["ordena"]))
     {
         reset($equipos);
         asort($equipos,SORT_NUMERIC);
-        reset($equipos);         
+        reset($equipos);
     }
 }
 else
@@ -61,7 +99,40 @@ function añadirEquipo($equipo,$escudo,$puntos){
     $equipos["$equipo"]["$escudo"]=$puntos;
 }
 
+function comprobarCookie(){
+    global $fila;
+    if(isset($_COOKIE["FilaActual"])){
+        $fila = $_COOKIE["FilaActual"];
+    }
+}
 
+function grabarCookie(){
+    global $fila;
+    setcookie("FilaActual", $fila, time()+60);
+}
+
+function insertarBotones($posicion){
+    
+    global $permisoAnterior;
+    global $permisoSiguiente;
+    
+    echo "<form action='clasificacion.php' method='get'>";
+    if ($permisoAnterior)
+    {
+        echo "<input type='submit' name='listado' value='Anterior'/>";
+    }else{
+        echo "<input type='submit' name='listado' value='Anterior' disabled='disabled'/>";
+    }
+    
+    if ($permisoSiguiente)
+    {
+        echo "<input type='submit' name='listado' value='Siguiente'/>";
+    }else{
+        echo "<input type='submit' name='listado' value='Siguiente' disabled='disabled'/>";
+    }
+    echo "<input type='hidden' name='posicion' value='" . $posicion . "'/>";
+    echo "</form>";
+}
 
 function cargarDatosTabla($equipos){
     echo "<table border='1'>
@@ -91,14 +162,11 @@ echo "<form action='clasificacion.php' method='get'>
 
 echo cargarDatosTabla($equipos);
 
+insertarBotones($fila);
+
 echo "El numero de equipos son:" . count($equipos);
 
-//Manejo de equipos y partidos
-echo "<form action='clasificacion.php' method='get'>
-        <input type='hidden' value='puntos()' name='fila'/>
-        <input type='submit' value='Anterior' name='listado'/>
-        <input type='submit' value='Siguiente' name='listado'/>
-      </form>";
+
 
 
 

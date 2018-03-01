@@ -116,7 +116,7 @@ function insertarBotones($posicion){
     global $permisoAnterior;
     global $permisoSiguiente;
     
-    echo "<form action='clasificacion.php' method='get'>";
+    echo "<form action='clasificacion1.php' method='get'>";
     if ($permisoAnterior)
     {
         echo "<input type='submit' name='listado' value='Anterior'/>";
@@ -136,9 +136,9 @@ function insertarBotones($posicion){
 
 function cargarDatosTabla($equipos){
     echo "<table border='1'>
-        <th><a href='clasificacion.php?ordena=equipos'>Equipos</a></th>
+        <th><a href='clasificacion1.php?ordena=equipos'>Equipos</a></th>
         <th>Escudo</th>
-        <th><a href='clasificacion.php?ordena=puntos'>Puntos</a></th>";
+        <th><a href='clasificacion1.php?ordena=puntos'>Puntos</a></th>";
     while(current($equipos)){
         echo "<tr>";
         $escudos = current($equipos);
@@ -153,7 +153,7 @@ function cargarDatosTabla($equipos){
 
 
 //HTML
-echo "<form action='clasificacion.php' method='get'>
+echo "<form action='clasificacion1.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
         Puntos: <input type='text' name='puntos'/>
@@ -165,10 +165,3 @@ echo cargarDatosTabla($equipos);
 insertarBotones($fila);
 
 echo "El numero de equipos son:" . count($equipos);
-
-
-
-
-
-
-

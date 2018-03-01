@@ -1,9 +1,7 @@
 <?php
-$numeroIncremento=0;
-$numeroDecremento=0;
 $fila=0;
-
 setcookie("fila",$fila);
+
 echo "<form action='biwenger.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
@@ -48,7 +46,6 @@ function CargarDatosEnTabla($equipos){
        next($equipos);       
     }
     echo "</table>";
-    
 }
 
 //Arrays Partidos 
@@ -83,29 +80,32 @@ if (isset($_GET["ORDENA"])){
     CargarDatosEnTabla($equipos);
 }
 
-
+echo "<br/>";
 echo "El total de equipos es: ".count($equipos)."</br>";
+echo "<br/>";
 
 
 //Botones Siguiente y Anterior
-echo "<form action='biwenger.php' method='get'>
-          <input type='hidden' value='obtenerPunteroFila()' name='fila'/>
-           <input type='submit' value='Anterior' name='movimiento' />
-          <input type='submit' value='Siguiente' name='movimiento'/>
-      </form>";
+
+    echo "<form action='biwenger.php' method='get'>";
+    echo "<input type='submit' value='Anterior' name='movimiento' />"; 
+    echo "<input type='submit' value='Siguiente' name='movimiento'/>";
+    echo "</form>";
 
 if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
     $movimiento=$_GET["movimiento"];
     $fila=$_COOKIE["fila"];
+    
+    
     if ($movimiento == "Anterior"){
         $fila=$fila-1;
-        setcookie("fila",$fila);
+        setcookie("fila",$fila);    
         reset($partidos);
         for ($numeroIncremento = 2; $numeroIncremento <= $fila ;$numeroIncremento++){
-            next($partidos);
+                next($partidos);   
         }
         echo key($partidos)." ".current($partidos);
-        
+
     } else {
         if ($movimiento == "Siguiente"){
             $fila++;
@@ -113,11 +113,8 @@ if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
             for ($numeroIncremento = 2; $numeroIncremento <= $fila ;$numeroIncremento++){
                 next($partidos);
             }
-            echo key($partidos)." ".current($partidos);
-            
+            echo key($partidos)." ".current($partidos);      
         }
     }
 }
 
-
-//

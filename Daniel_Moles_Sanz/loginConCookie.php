@@ -8,7 +8,7 @@ if (isset($_COOKIE["intento"])){
     $numeroDeIntentos++;
     cargarFormulario();
 }
-
+ 
 if (isset($_POST["usuario"]) && isset($_POST["password"])){
     if ($cookie < 3){
         if ($_POST["usuario"] == "daniel" && $_POST["password"] == "moles"){

@@ -5,10 +5,6 @@
 	</head>
 	<body>
 	<?php
-	$incremento=0;
-	$decremento=0;
-	$fila=0;
-	setcookie("fila",$fila);
 	
 	//Array equipos
     $ligaArray["Levante"]["http://www.lafutbolteca.com/wp-content/uploads/2010/01/LEVANTE.jpg"]=20;
@@ -50,6 +46,8 @@
         $ligaArray["$equipo"]["$escudo"]=$puntos;
         echo cargarDatosEnTabla($ligaArray);
     }
+    
+    //si existen equipos que añadir, se añaden, si no te muestra la tabla
     
     if(isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"])){
         echo añadirEquipo($_GET["equipo"], $_GET["escudo"], $_GET["puntos"]);
@@ -96,35 +94,74 @@
     <?php
     }
     //Siguiente y anterior
-    ?>
+    $incremento=0;
+    $decremento=0;
     
-    <form action="comunio.php" method="get">
-    	<input type="submit" name="desplazamiento" value="siguiente"/>
-    	<input type="submit" name="desplazamiento" value="anterior"/>
-    </form><br/>
-    
-    <?php
-    if(isset($_GET["desplazamiento"]) && isset($_COOKIE["fila"])){
-        $desplazamiento=$_GET["desplazamiento"];
-        $fila=$_COOKIE["fila"];
-        if ($desplazamiento=="siguiente"){
-            $fila++;
+        if(isset($_GET["desplazamiento"]) && isset($_COOKIE["fila"])){
+            $desplazamiento=$_GET["desplazamiento"];
+            $fila=$_COOKIE["fila"];
+            if ($desplazamiento=="siguiente" && $fila<=count($ligaArray)+1){
+                $fila++;
+                setcookie("fila",$fila);
+                for ($incremento=2; $incremento<=$fila ;$incremento++){
+                    next($partidosArray);
+                }
+                echo key($partidosArray)." ".current($partidosArray);
+                echo "<form action='comunio.php' method='get'>";
+                
+                echo "<input type='submit' name='desplazamiento' value='siguiente'/>";
+                
+                echo "<input type='submit' name='desplazamiento' value='anterior'/>";
+                
+                echo "</form><br/>";
+            }elseif ($desplazamiento=="siguiente" && $fila>count($ligaArray)+1) {
+                echo "<form action='comunio.php' method='get'>";
+                
+                echo "<input type='submit' disabled='disabled' name='desplazamiento' value='siguiente'/>";
+                
+                echo "<input type='submit' name='desplazamiento' value='anterior'/>";
+                
+                echo "</form><br/>";
+                $fila++;
+                setcookie("fila",$fila);
+            }
+            if ($desplazamiento=="anterior" && $fila>1){
+                $fila--;
+                setcookie("fila",$fila);
+                for ($decremento=2; $decremento<=$fila ;$decremento++){
+                    next($partidosArray);
+                }
+                echo key($partidosArray)." ".current($partidosArray);
+                echo "<form action='comunio.php' method='get'>";
+                
+                echo "<input type='submit' name='desplazamiento' value='siguiente'/>";
+                
+                echo "<input type='submit' name='desplazamiento' value='anterior'/>";
+                
+                echo "</form><br/>";
+            }elseif ($desplazamiento=="anterior" && $fila<=1){
+                echo "<form action='comunio.php' method='get'>";
+                
+                echo "<input type='submit' name='desplazamiento' value='siguiente'/>";
+                
+                echo "<input type='submit' disabled='disabled' name='desplazamiento' value='anterior'/>";
+                
+                echo "</form><br/>";
+                $fila=0;
+                setcookie("fila",$fila);
+            }
+        }else{
+            $fila=0;
             setcookie("fila",$fila);
             reset($partidosArray);
-            for ($incremento=2; $incremento<=$fila ;$incremento++){
-                next($partidosArray);
-            }
-            echo key($partidosArray)." ".current($partidosArray);
-        }elseif ($desplazamiento=="anterior"){
-            $fila--;
-            setcookie("fila",$fila);
-            reset($partidosArray);
-            for ($decremento=2; $decremento<=$fila ;$decremento++){
-                next($partidosArray);
-            }
-            echo key($partidosArray)." ".current($partidosArray);
+            echo "<form action='comunio.php' method='get'>";
+            
+            echo "<input type='submit' name='desplazamiento' value='siguiente'/>";
+            
+            echo "<input type='submit' name='desplazamiento' value='anterior'/>";
+            
+            echo "</form><br/>";
         }
-    }
     
     //Ordenar aquipos
     if (isset($_GET["ordenar"])){
@@ -132,7 +169,6 @@
         if ($ordenar=="equipos"){
             ksort($ligaArray);
             reset($ligaArray);
-            cargarDatosEnTabla($ligaArray);
         }
     }
     //boton borrar y modificar

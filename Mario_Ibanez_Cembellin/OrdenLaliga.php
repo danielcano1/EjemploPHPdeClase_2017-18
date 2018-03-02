@@ -72,7 +72,7 @@ if (isset($_GET["ordena"]))
 
 
 
-        echo "Los equipos so " .count($equipos);
+        echo "Los equipos son " .count($equipos);
 
 
 

@@ -3,32 +3,44 @@
 $nombreproyecto = "Limitaciones.php";
 $intentos=0;
 
-//HTML FORMULARIO ACCESO
+//Intento
 
+if(isset($_GET["usuario"]) && isset($_GET["pass"]))
+{
+    
 
-
-if(isset($_GET["usuario"]) && isset($_GET["pass"])){
-    if($_GET["usuario"] == "valido" && $_GET["pass"] == "hola") {
-        echo "Hola bienvenido";
+    
+    if($_COOKIE["intentos"] < 3 && $_COOKIE["intentos"] > 0)
+    {
+        if($_GET["usuario"] == "mario" && $_GET["pass"] == 1234) 
+        {
+        
+            echo "Hola has entrado";
+        }
+        
+        else {
+            $intentos=$intentos+1;
+            echo "Error ";
+            grabarIntentoCookie();
+        }
+         
+        }
+        else {
+            echo "Sin intentos prueba en un rato ";
+            setcookie("intentos",4,time()+120);
+            
+        }
     }
-    else{
-        echo "Error";
-           $intetos=$intentos+1;
-    }
-}
-
-           
-
+     
+         
 
 // funcion cookie es menor que tres
-function numeroDeIntentos(){
-    global $intentos;
-    setcookie("VecesAcceso", $intentos); 
+    function grabarIntentoCookie(){
+        global $sesionIntentada;
+        setcookie("grabar",$sesionIntentada);
+    }  
     
-}
-    
-    
-  
+//HTML FORMULARIO ACCESO
     
 echo "<form action='" . $nombreproyecto . "' method='get'>
         Usuario: <input type='text' name='usuario'/>

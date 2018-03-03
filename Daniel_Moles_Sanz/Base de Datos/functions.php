@@ -132,7 +132,7 @@ function obtenerResultado($actual){
     return $resultado;
 };
 
-function imprimirTabla(){
+function imprimirSoloTabla(){
   $actual=0;
   echo "
   <div class='container-fluid'>
@@ -167,7 +167,7 @@ function imprimirTabla(){
   </div>";
 }
 
-function imprimirTablaPartidos(){
+function imprimirTablaDePartidos(){
     $actual=0;
     echo "
   <div class='container-fluid'>

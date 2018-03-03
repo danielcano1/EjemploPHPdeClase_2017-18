@@ -22,14 +22,14 @@
     $BBDD="sergio";
     
     */
-    include "functions.php";
-    include "createTable.php";
-    creaTablaCarta();
+    include "funciones.php";
+    include "CrearTablas.php";
+    creaTablaequipos();
     creaTablaPartidos();
     inicializarBaseDatos();
     introducirDatosenTablaPartidos();
-    imprimirTabla();
-    imprimirTablaPartidos();
+    imprimirSoloTabla();
+    imprimirTablaDePartidos();
       ?>
   </body>
 </html>

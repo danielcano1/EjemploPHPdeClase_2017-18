@@ -123,9 +123,11 @@ if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
 
 echo "<hr/>";
 echo "<h2>Botones Para modificar</h2>";
+botonesBorrarModificar();
+
 function Reemplazar($arrayOrigen, $key, $elementoNuevo){
     $nuevoArray;
-    
+
     reset($arrayOrigen);
     while(current($arrayOrigen)){
         if (key($arrayOrigen) == $key){
@@ -146,6 +148,14 @@ function AñadirNuevoElemento(&$array,$nuevoArray){
     $array = array_merge((array)$array,(array)$nuevoArray);
 }
 
+function botonesBorrarModificar(){
+    echo "<form action='biwenger.php' method='get'>
+                <input type='submit' value='borrar' name='accion'/>
+                <input type='submit' value='modificar' name='accion'/>
+      </form>";
+}
+
+
 if (isset($_GET["accionEq"])){
     $eqModificarOBorrar=$_GET["accionEq"];
     $nombreEqModificarOBorrar=$_GET["equipoBorrar"];
@@ -156,6 +166,10 @@ if (isset($_GET["accionEq"])){
         $nuevoA[$escudoN]=$puntosN;
         $equipos = Reemplazar($equipos, $equipoACambiar, $nuevoA);
         
+    } else {
+        if ($eqModificarOBorrar == "borrarEq"){
+            unset($equipos[$nombreEqModificarOBorrar]);
+        }
     }
 } else {
     if (isset($_GET["accion"])){
@@ -174,15 +188,10 @@ if (isset($_GET["accionEq"])){
                                       Puntos: <input type='text' name='puntosN'/>
                 <input type='submit' value='modificarEq' name='accionEq'/>
                     
-      </form>";
-            }
+                      </form>";
+            } 
         }
-    } else {
-        echo "<form action='biwenger.php' method='get'>
-                <input type='submit' value='borrar' name='accion'/>
-                <input type='submit' value='modificar' name='accion'/>
-      </form>";
-    }
+    } 
 }
 
 echo "<hr/>";

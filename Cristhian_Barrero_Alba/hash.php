@@ -1,5 +1,5 @@
 <?php
-echo "<form action='clasificacion1.php' method='post'>
+echo "<form action='hashClasi.php' method='post'>
        Usuario: <input type='text' name='user'/>
        Contraseña: <input type='password' name='pass'/>
         <input type='submit' value='enviar'/>

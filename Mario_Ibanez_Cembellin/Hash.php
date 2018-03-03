@@ -1,7 +1,9 @@
 <?php
 
 $arrayDeUsuarios["Mario"]="mario123";
+
 $funcionresumen=password_hash($arrayDeUsuarios["Mario"], PASSWORD_DEFAULT);
+echo funcionresumen;
 if (password_verify($_POST["pass"], $funcionresumen)){
     
     echo $funcionresumen;

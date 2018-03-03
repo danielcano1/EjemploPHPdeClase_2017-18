@@ -28,8 +28,8 @@
     creaTablaPartidos();
     inicializarBaseDatos();
     introducirDatosenTablaPartidos();
-    imprimirSoloTabla();
-    imprimirTablaDePartidos();
+    imprimirTabla();
+    imprimirTablaPartidos();
       ?>
   </body>
 </html>

@@ -10,6 +10,7 @@ function dameConexion(){
     return $conexion;
 }
 
+
 function inicializarBaseDatos(){
     $conexion = dameConexion(); // new mysqli ('localhost', 'root', '', 'foro');
     $conexion->query("truncate table equipos");
@@ -92,7 +93,7 @@ function obtenerPuntosEquipo($actual){
     return $puntos;
 };
 
-function Local($actual){
+function eqLocal($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
   select local
@@ -105,7 +106,7 @@ function Local($actual){
     return $local;
 };
 
-function Visitante($actual){
+function eqVisitante($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
   select visitante
@@ -183,10 +184,10 @@ function imprimirTablaPartidos(){
             $actual=($i*$columnasPorFila)+$j;
             //if ($actual <= $filasNecesarias){
             echo "<td>";
-            echo obtenerLocal($actual);
+            echo eqLocal($actual);
             echo "</td>";
             echo "<td>";
-            echo obtenerVisitante($actual);
+            echo eqVisitante($actual);
             echo "</td>";
             echo "<td>";
             echo obtenerResultado($actual);

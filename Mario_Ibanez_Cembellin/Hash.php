@@ -4,6 +4,8 @@ $arrayDeUsuarios["Mario"]="mario123";
 $funcionresumen=password_hash($arrayDeUsuarios["Mario"], PASSWORD_DEFAULT);
 if (password_verify($_POST["pass"], $funcionresumen)){
     
+    echo $funcionresumen;
+    
     //Array Equipos
         $equipos["Betis"]["https://ssl.gstatic.com/onebox/media/sports/logos/S0fDZjYYytbZaUt0f3cIhg_96x96.png"]="50";
         $equipos["Levante"]["https://ssl.gstatic.com/onebox/media/sports/logos/SQB-jlVosxVV1Ce79FhbOA_96x96.png"]="63";

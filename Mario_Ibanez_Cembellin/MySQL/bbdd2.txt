@@ -1,0 +1,8 @@
+Bet-Cel|3-1|1;
+Bet-Mal|2-1|2;
+Lev-Atm|4-4|3;
+Lev-Rso|1-2|4;
+Vil-Atm|0-1|5;
+Vil-Val|1-1|6;
+Alv-Leg|1-2|7;
+Alv-Dp|0-0|8;

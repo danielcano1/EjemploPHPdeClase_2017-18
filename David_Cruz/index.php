@@ -6,3 +6,4 @@ echo "<form action='comunio.php' method='post'>
         <input type='password' name='contraseña'/>
         <input type='submit' value='enviar'/>
        </form><br/>";
+?>

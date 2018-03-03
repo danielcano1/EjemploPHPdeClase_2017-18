@@ -29,7 +29,7 @@
     inicializarBaseDatos();
     introducirDatosenTablaPartidos();
     imprimirTabla();
-    imprimirTablaPartidos();
+    imprimirTablaDePartidos();
       ?>
   </body>
 </html>

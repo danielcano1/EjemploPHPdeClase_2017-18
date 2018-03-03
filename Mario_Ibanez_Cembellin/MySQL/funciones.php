@@ -93,7 +93,7 @@ function obtenerPuntosEquipo($actual){
     return $puntos;
 };
 
-function eqLocal($actual){
+function obLocal($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
   select local
@@ -106,7 +106,7 @@ function eqLocal($actual){
     return $local;
 };
 
-function eqVisitante($actual){
+function obVisitante($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
   select visitante
@@ -119,7 +119,7 @@ function eqVisitante($actual){
     return $visitante;
 };
 
-function obtenerResultado($actual){
+function obResultado($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
   select resultado
@@ -167,7 +167,7 @@ function imprimirTabla(){
   </div>";
 }
 
-function imprimirTablaPartidos(){
+function imprimirTablaDePartidos(){
     $actual=0;
     echo "
   <div class='container-fluid'>
@@ -184,19 +184,23 @@ function imprimirTablaPartidos(){
             $actual=($i*$columnasPorFila)+$j;
             //if ($actual <= $filasNecesarias){
             echo "<td>";
-            echo eqLocal($actual);
+            echo obLocal($actual);
             echo "</td>";
             echo "<td>";
-            echo eqVisitante($actual);
+            echo obVisitante($actual);
             echo "</td>";
             echo "<td>";
-            echo obtenerResultado($actual);
+            echo obResultado($actual);
             echo "</td>";
             //}
         }
         echo "</tr>";
     }
     echo "
+  </table>
+  </div>";
+}
+?>
   </table>
   </div>";
 }

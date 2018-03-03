@@ -1,7 +1,7 @@
 <?php
 $fila=0;
 setcookie("fila",$fila);
-
+echo "<h2>Nuevo equipo</h2>";
 echo "<form action='biwenger.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>
@@ -9,11 +9,21 @@ echo "<form action='biwenger.php' method='get'>
                 <input type='submit' value='Enviar'/>
       </form>";
 
+//Array Equipos
 $equipos["Real Madrid"]["http://www.lne.es/deportes/futbol/imgCompeticiones/primera-division/equipos/real-madrid/escudo_peq.png"]=42;
 $equipos["Barcelona"]["http://www.lne.es/deportes/futbol/imgCompeticiones/primera-division/equipos/barcelona/escudo_peq.png"]=59;
 $equipos["Valencia"]["http://www.lne.es/deportes/futbol/imgCompeticiones/primera-division/equipos/valencia-cf/escudo_peq.png"]=43;
 $equipos["Bilbao"]["http://www.lne.es/deportes/futbol/imgCompeticiones/primera-division/equipos/athletic-club/escudo_peq.png"]=28;
 
+//Arrays Partidos
+$partidos["Sevilla-RM"]="3-2";
+$partidos["Barcelona-RM"]="2-2";
+$partidos["Barcelona-Valencia"]="3-2";
+$partidos["Barcelona-Betis"]="5-2";
+$partidos["Atletico-Valencia"]="3-2";
+$partidos["Valencia-RM"]="2-2";
+$partidos["Bilbao-Valencia"]="5-2";
+$partidos["Bilbao-Getafe"]="2-3";
 
 
 if(isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"])){
@@ -48,16 +58,6 @@ function CargarDatosEnTabla($equipos){
     echo "</table>";
 }
 
-//Arrays Partidos 
-$partidos["Sevilla-RM"]="3-2";
-$partidos["Barcelona-RM"]="2-2";
-$partidos["Barcelona-Valencia"]="3-2";
-$partidos["Barcelona-Betis"]="5-2";
-$partidos["Atletico-Valencia"]="3-2";
-$partidos["Valencia-RM"]="2-2";
-$partidos["Bilbao-Valencia"]="5-2";
-$partidos["Bilbao-Getafe"]="2-3";
-
 
 
 //Ordenar Equipos
@@ -76,17 +76,17 @@ if (isset($_GET["ORDENA"])){
         CargarDatosEnTabla($equipos);
     }
     
-} else {
-    CargarDatosEnTabla($equipos);
-}
+} 
+// CargarDatosEnTabla($equipos);
 
-echo "<br/>";
-echo "El total de equipos es: ".count($equipos)."</br>";
-echo "<br/>";
+
+
 
 
 //Botones Siguiente y Anterior
 
+    echo "<hr/>";
+    echo "<h2>Botones Para mostrar partidos</h2>";
     echo "<form action='biwenger.php' method='get'>";
     echo "<input type='submit' value='Anterior' name='movimiento' />"; 
     echo "<input type='submit' value='Siguiente' name='movimiento'/>";
@@ -117,4 +117,114 @@ if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
         }
     }
 }
+
+
+// Modificar o Borrar elementos
+
+echo "<hr/>";
+echo "<h2>Botones Para modificar</h2>";
+function Reemplazar($arrayOrigen, $key, $elementoNuevo){
+    $nuevoArray;
+    
+    reset($arrayOrigen);
+    while(current($arrayOrigen)){
+        if (key($arrayOrigen) == $key){
+            
+            AñadirNuevoElemento($nuevoArray,array(key($arrayOrigen) => $elementoNuevo));
+            
+        }else{
+            AñadirNuevoElemento($nuevoArray,array(key($arrayOrigen) => current($arrayOrigen)));
+        }
+        next($arrayOrigen);
+    }
+    
+    return $nuevoArray;
+    
+}
+
+function AñadirNuevoElemento(&$array,$nuevoArray){
+    $array = array_merge((array)$array,(array)$nuevoArray);
+}
+
+if (isset($_GET["accionEq"])){
+    $eqModificarOBorrar=$_GET["accionEq"];
+    $nombreEqModificarOBorrar=$_GET["equipoBorrar"];
+    if ($eqModificarOBorrar == "modificarEq"){
+        $equipoACambiar=$_GET["equipoBorrar"];
+        $puntosN=$_GET["puntosN"];
+        $escudoN=$_GET["escudoN"];
+        $nuevoA[$escudoN]=$puntosN;
+        $equipos = Reemplazar($equipos, $equipoACambiar, $nuevoA);
+        
+    }
+} else {
+    if (isset($_GET["accion"])){
+        $accionARealizar=$_GET["accion"];
+        if ($accionARealizar == "borrar"){
+            echo "<form action='biwenger.php' method='get'>
+                Equipo que quieres Borrar: <input type='text' name='equipoBorrar'/>
+                <input type='submit' value='borrarEq' name='accionEq'/>
+                
+      </form>";
+        } else {
+            if ($accionARealizar == "modificar"){
+                echo "<form action='biwenger.php' method='get'>
+                Equipo que quieres Modificar: <input type='text' name='equipoBorrar'/>
+                                      Escudo: <input type='text' name='escudoN'/>
+                                      Puntos: <input type='text' name='puntosN'/>
+                <input type='submit' value='modificarEq' name='accionEq'/>
+                    
+      </form>";
+            }
+        }
+    } else {
+        echo "<form action='biwenger.php' method='get'>
+                <input type='submit' value='borrar' name='accion'/>
+                <input type='submit' value='modificar' name='accion'/>
+      </form>";
+    }
+}
+
+echo "<hr/>";
+echo "<h2>Tabla</h2>";
+cargarDatosEnTabla($equipos);
+
+echo "<br/>";
+echo "El total de equipos es: ".count($equipos)."</br>";
+echo "<br/>";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -230,7 +230,7 @@ if(isset($_SESSION["usuario"])){
     } else {
         echo "Tienes que loguearte primero";
     }
-    
+     
 }
 if (!isset($_SESSION["usuario"])){
 echo "

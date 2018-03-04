@@ -45,6 +45,7 @@ function contarFilas($numEntradas){
   $conexion->close();
   return $numFilas;
 }
+
 function contarEntradas(){
   $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
   $select="select count(*) from equipos;";

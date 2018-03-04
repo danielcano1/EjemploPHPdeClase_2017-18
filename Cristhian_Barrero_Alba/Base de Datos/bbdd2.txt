@@ -1,0 +1,8 @@
+Atleti|Valencia|2-0|1;
+Madrid|Atleti|1-0|2;
+Valencia|Depor|0-0|3;
+Barsa|Valencia|3-0|4;
+Villareal|Sevilla|0-2|5;
+Sevilla|Villareal|2-2|6;
+Espayol|Malaga|2-2|7;
+Espayol|Alaves|4-4|8;

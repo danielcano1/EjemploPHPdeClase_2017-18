@@ -1,9 +1,6 @@
 <?php
-//Login de Hash
-$arrayUser["Cristhian"]="Asir";
-$hash=password_hash($arrayUser["Cristhian"], PASSWORD_DEFAULT);
-if (password_verify($_POST["pass"], $hash))
-{
+//Sesiones
+session_start();
 //VARIABLES GLOBALES
 $fila=0;
 $permisoAnterior=false;
@@ -245,13 +242,61 @@ echo cargarDatosTabla($equipos);
 
 insertarBotones($fila);
 
-BotonesModElm();
-
 echo key($partidos) . " " . current($partidos);
 
 echo "<br/>";
 
 echo "El numero de equipos son:" . count($equipos);
+
+echo "<hr/>";
+
+//SESIONES
+
+if(isset($_SESSION["usuario"])){
+    if(isset($_POST["sesion"]) && $_POST["sesion"] == "cerrar"){
+        unset($_SESSION);
+        session_destroy();
+        $_SESSION=array();
+        header('Location: clasificacion1.php');
+    }
+    echo "Bienvenido " . $_SESSION["usuario"];
+    if($_SESSION["usuario"] == "Juan"){
+        echo ". Puedes borrar y modificar los equipos: ";
+        BotonesModElm();
+    }    
 }else{
-    echo "Imposible acceder a esta página, vuelva a intentarlo.";
+    if(isset($_POST["usuario"]) && isset($_POST["pass"])){
+        if(($_POST["usuario"] == "Juan" && $_POST["pass"]) == "1234" || ($_POST["usuario"] == "Maria" && $_POST["pass"] == "1111")){
+            $_SESSION["usuario"] = $_POST["usuario"];
+            echo $_SESSION["usuario"];
+            header('Location: clasificacion1.php');
+        }else{
+            echo "Error al iniciar sesion, intentelo de nuevo";
+        }
+    }else{
+        echo "Debes loguearte para poder editar";
+    }
 }
+
+if(!isset($_SESSION["usuario"])){
+    echo "<form action='clasificacion1.php' method='post'>
+        Usuario: <input type='text' name='usuario'/>
+        Pass: <input type='password' name='pass'/>
+        <input type='submit' value='Login'>
+      </form>";
+}else{
+    echo "<form action='clasificacion1.php' method='post'>
+        Usuario: <input type='text' name='usuario' value='"; echo $_SESSION["usuario"]; echo "'/>
+        <input type='hidden' value='cerrar' name='sesion'/>
+        <input type='submit' value='logout'/>
+      </form>";
+}
+
+
+
+
+
+
+
+
+

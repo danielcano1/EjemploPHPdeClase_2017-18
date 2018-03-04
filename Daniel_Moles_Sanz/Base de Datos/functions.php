@@ -36,6 +36,19 @@ function introducirDatosenTablaPartidos(){
     $conexion->close();
 }
 
+function introducirDatosenTablaPartidos(){
+    $conexion = dameConexion(); // new mysqli ('localhost', 'root', '', 'foro');
+    $conexion->query("truncate table partidos");
+    $carga= "LOAD DATA LOCAL INFILE 'bbdd3.txt'
+  INTO TABLE usuarios
+  FIELDS TERMINATED BY '|'
+  LINES TERMINATED BY ';'
+  (Nombre, Password)";
+    $conexion->query($carga);
+    echo($conexion->error);
+    $conexion->close();
+}
+
 function contarFilas($numEntradas){
   $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
   $select="select count(*) from equipos;";

@@ -1,11 +1,17 @@
- <?php        
-
- //Array Equipos
+ <?php 
+ session_start();
+ echo "Mi id de sesion es: " . session_id();
+ echo "<form action='Liga.php' method='get'>
+        Equipo: <input type='text' name='equipo'/>
+        Escudo: <input type='text' name='escudo'/>
+        Puntos: <input type='text' name='puntos'/>
+        <input type='submit' value='Enviar'/>
+      </form>";
+ 
  $equipos["Betis"]["https://ssl.gstatic.com/onebox/media/sports/logos/S0fDZjYYytbZaUt0f3cIhg_96x96.png"]="50";
  $equipos["Levante"]["https://ssl.gstatic.com/onebox/media/sports/logos/SQB-jlVosxVV1Ce79FhbOA_96x96.png"]="63";
  $equipos["Villareal"]["https://ssl.gstatic.com/onebox/media/sports/logos/WKH7Ak5cYD6Qm1EEqXzmVw_96x96.png"]="47";
  $equipos["Alaves"]["https://ssl.gstatic.com/onebox/media/sports/logos/meAnutdPID67rfUecKaoFg_96x96.png"]="38";
-
  
  if (isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
  {
@@ -22,6 +28,8 @@
      global $equipos;
      $equipos[$equipo][$escudo]=$puntos;
  }
+ 
+ 
  
  function cargarDatosTabla($equipos){
      echo "<table border='1'>
@@ -40,25 +48,6 @@
      }
      echo "</table>";
  }
- 
- 
- //Ordenar Equipos
- if (isset($_GET["ORDENA"])){
-     $Ordena=$_GET["ORDENA"];
-     
-     if ($Ordena=="Eq"){
-         ksort($equipos);
-         reset($equipos);
-         CargarDatosTabla($equipos);
-     } else {
-         reset($equipos);
-         asort($equipos, SORT_NUMERIC);
-         
-         reset($equipos);
-         CargarDatosTabla($equipos);
-     }
-     
- }
  // CargarDatosEnTabla($equipos);
  
  
@@ -67,8 +56,9 @@
  
  //Botones Siguiente y Anterior
  
- echo "Ver partidos";
- echo "<form action='AgregarBorrar.ph' method='get'>";
+ echo "<hr/>";
+ echo "Botones partidos";
+ echo "<form action='AgregarBorrar.php' method='get'>";
  echo "<input type='submit' value='Anterior' name='movimiento' />";
  echo "<input type='submit' value='Siguiente' name='movimiento'/>";
  echo "</form>";
@@ -100,11 +90,11 @@
  }
  
  
- // Modificar/Borrar
+ // Modificar o Borrar elementos
  
  echo "<hr/>";
- echo "Modificar";
- botonesBorrarModificar();
+ echo "Formulario modificar";
+
  
  function Reemplazar($arrayOrigen, $key, $elementoNuevo){
      $nuevoArray;
@@ -129,7 +119,7 @@
      $array = array_merge((array)$array,(array)$nuevoArray);
  }
  
- function botonesBorrarModificar(){
+ function botonesBorrarOModificar(){
      echo "<form action='AgregarBorrar.php' method='get'>
                 <input type='submit' value='borrar' name='accion'/>
                 <input type='submit' value='modificar' name='accion'/>
@@ -185,16 +175,51 @@
  
  
  
+ //Sesiones
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ if(isset($_SESSION["usuario"])){
+     if (isset($_POST["sesion"]) && $_POST["sesion"] == "cerrar"){
+         unset($_SESSION);
+         session_destroy();
+         $_SESSION=array();
+         header('Location: AgregarBorrar.php');
+     }
+     echo "Bienvenido ". $_SESSION["usuario"];
+     if ($_SESSION["usuario"] == "Juan"){
+         echo " Realizar modificaciones en tabla";
+         botonesBorrarOModificar();
+     }
+ } else {
+     if(isset($_POST["usuario"]) && isset($_POST["pass"])){
+         if (($_POST["usuario"]=="Juan" && $_POST["pass"]=="1234") || ($_POST["usuario"]=="Maria" && $_POST["pass"]=="1111")){
+             $_SESSION["usuario"] = $_POST["usuario"];
+             echo $_SESSION["usuario"];
+             header('Location: AgregarBorrar.php');
+         } else {
+             echo "Error. Usuario o contraseña";
+         }
+     } else {
+         echo "Logearse";
+     }
+     
+ }
+ if (!isset($_SESSION["usuario"])){
+     echo "
+<form action='AgregarBorrar.php' method='post'>
+    <input type='text' name='usuario'/>
+    <input type='password' name='pass'/>
+    <input type='submit' value='Iniciar'/>
+</form>
+";
+ } else {
+     echo "
+<form action='AgregarBorrar.php' method='post'>
+    <input type='text' name='usuario' value='"; echo $_SESSION["usuario"]; echo "'/>
+    <input type='hidden' name='sesion' value='cerrar'/>
+    <input type='submit' value='Cerrar'/>
+</form>
+";
+ }
  
  
  

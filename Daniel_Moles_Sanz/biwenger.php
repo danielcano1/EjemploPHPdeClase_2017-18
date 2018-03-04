@@ -1,4 +1,6 @@
 <?php
+session_start();
+echo "Mi id de sesion es: " . session_id();
 $fila=0;
 setcookie("fila",$fila);
 echo "<h2>Nuevo equipo</h2>";
@@ -122,8 +124,8 @@ if (isset($_GET["movimiento"]) && isset($_COOKIE["fila"])){
 // Modificar o Borrar elementos
 
 echo "<hr/>";
-echo "<h2>Botones Para modificar</h2>";
-botonesBorrarModificar();
+echo "<h2>Formulario para modificar.</h2>";
+
 
 function Reemplazar($arrayOrigen, $key, $elementoNuevo){
     $nuevoArray;
@@ -202,8 +204,51 @@ echo "<br/>";
 echo "El total de equipos es: ".count($equipos)."</br>";
 echo "<br/>";
 
+//Sesiones
 
-
+if(isset($_SESSION["usuario"])){
+    if (isset($_POST["sesion"]) && $_POST["sesion"] == "cerrar"){
+        unset($_SESSION);
+        session_destroy();
+        $_SESSION=array();
+        header('Location: biwenger.php');
+    }
+    echo "Bienvenido/a ". $_SESSION["usuario"];
+    if ($_SESSION["usuario"] == "Juan"){
+        echo " puedes realizar modificaciones sobre la tabla";
+        botonesBorrarModificar();
+    }
+} else {
+    if(isset($_POST["usuario"]) && isset($_POST["pass"])){
+        if (($_POST["usuario"]=="Juan" && $_POST["pass"]=="1234") || ($_POST["usuario"]=="Maria" && $_POST["pass"]=="1111")){
+            $_SESSION["usuario"] = $_POST["usuario"];
+            echo $_SESSION["usuario"];
+            header('Location: biwenger.php');
+        } else {
+            echo "Error. Su usuario o contraseña no son validos";
+        }
+    } else {
+        echo "Tienes que loguearte primero";
+    }
+    
+}
+if (!isset($_SESSION["usuario"])){
+echo "
+<form action='biwenger.php' method='post'>
+    <input type='text' name='usuario'/>
+    <input type='password' name='pass'/>
+    <input type='submit' value='Iniciar sesion'/>
+</form>
+";
+} else {
+echo "
+<form action='biwenger.php' method='post'>
+    <input type='text' name='usuario' value='"; echo $_SESSION["usuario"]; echo "'/>
+    <input type='hidden' name='sesion' value='cerrar'/>
+    <input type='submit' value='Cerrar sesion'/>
+</form>
+";
+}
 
 
 

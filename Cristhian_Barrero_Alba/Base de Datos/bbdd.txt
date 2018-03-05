@@ -1,0 +1,4 @@
+Atleti|https://www.ligafutbol.net/wp-content/2009/04/escudo-atletico-de-madrid.png|40|1;
+Valencia|https://www.ligafutbol.net/wp-content/2009/04/valenciacf.jpg|20|2;
+Sevilla|https://www.ligafutbol.net/wp-content/2009/04/sevilla_fc.gif|15|3;
+Espayol|https://www.ligafutbol.net/wp-content/2009/04/espanyol_rcd.gif|5|4;

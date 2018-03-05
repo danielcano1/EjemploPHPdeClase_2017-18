@@ -1,4 +1,6 @@
 <?php
+//Sesiones
+session_start();
 //VARIABLES GLOBALES
 $fila=0;
 $permisoAnterior=false;
@@ -9,14 +11,14 @@ $equipos["Valencia"]["https://www.ligafutbol.net/wp-content/2009/04/valenciacf.j
 $equipos["Sevilla"]["https://www.ligafutbol.net/wp-content/2009/04/sevilla_fc.gif"]=15;
 $equipos["Espayol"]["https://www.ligafutbol.net/wp-content/2009/04/espanyol_rcd.gif"]=5;
 
-$partidos["Atleti"]["Atleti - Valencia"]="2-0";
-$partidos["Atleti"]["Madrid - Atleti"]="1-0";
-$partidos["Valencia"]["Valencia - Depor"]="0-0";
-$partidos["Valencia"]["Barsa - Valencia"]="3-0";
-$partidos["Sevilla"]["Villareal - Sevilla"]="0-2";
-$partidos["Sevilla"]["Sevilla - Villareal"]="2-2";
-$partidos["Espayol"]["Espayol - Malaga"]="2-2";
-$partidos["Espayol"]["Espayol - Alaves"]="4-4";
+$partidos["Atleti - Valencia"]="2-0";
+$partidos["Madrid - Atleti"]="1-0";
+$partidos["Valencia - Depor"]="0-0";
+$partidos["Barsa - Valencia"]="3-0";
+$partidos["Villareal - Sevilla"]="0-2";
+$partidos["Sevilla - Villareal"]="2-2";
+$partidos["Espayol - Malaga"]="2-2";
+$partidos["Espayol - Alaves"]="4-4";
 
 //Parametros IFS
 //Añadir un equipo
@@ -48,17 +50,22 @@ if(isset($_GET["listado"]) && isset($_GET["posicion"])){
         $permisoAnterior = true;
     }
     
-    if ($fila + 1 >= count($equipos)){
-        $fila = count($equipos) - 1;
+    if ($fila + 1 >= count($partidos)){
+        $fila = count($partidos) - 1;
         $permisoSiguiente = false;
     }else{
         $permisoSiguiente = true;
     }
     
     grabarCookie();
+    
+    for($recorrerPartido=0;$recorrerPartido<$fila;$recorrerPartido++){
+        next($partidos);
+    }
+    
 }else{
-    if (count($equipos) > 0){
-        if ($fila < count($equipos)){
+    if (count($partidos) > 0){
+        if ($fila < count($partidos)){
             $permisoSiguiente = true;
         }else{
             $permisoSiguiente = false;
@@ -67,6 +74,11 @@ if(isset($_GET["listado"]) && isset($_GET["posicion"])){
         $permisoSiguiente = false;
     }
     grabarCookie();
+    
+    for($recorrerPartido=0;$recorrerPartido<$fila;$recorrerPartido++){
+        next($partidos);
+    }
+    
 }
 
 //Ordenar
@@ -151,6 +163,72 @@ function cargarDatosTabla($equipos){
     echo "</table>";
 }
 
+//Ejercicio de Borrar y modificar los equipos
+
+function BotonesModElm(){
+    echo "<form action='clasificacion1.php' method='get'>
+        <input type='submit' value='Modificar' name='ModElm'/>
+        <input type='submit' value='Borrar' name='ModElm'/>
+      </form>";
+}
+
+function Cambiar($equipoOriginal,$equipoAMod,$equipoModificado){
+    $EditEquipo;
+    reset ($equipoOriginal);
+    
+    while(current($equipoOriginal)){
+        if (key($equipoOriginal) == $equipoAMod){
+            InsertarMod($EditEquipo,array(key($equipoOriginal) => $equipoModificado));
+        }else{
+            InsertarMod($EditEquipo,array(key($equipoOriginal) => current($equipoOriginal)));
+        }
+            next($equipoOriginal);
+    }
+    return $EditEquipo;
+}
+
+function InsertarMod(&$Edit,$EditEquipo){
+    $Edit = array_merge((array)$Edit,(array)$EditEquipo);
+}
+
+if(isset($_GET["Editar"]))
+{
+    $editarEquipo=$_GET["Editar"];    
+    if($editarEquipo == 'EliminarEquipo'){
+        $equipoBorr=$_GET["EquipoBorrar"];
+        unset($equipos[$equipoBorr]);
+    }else{
+        $equipoMod=$_GET["EquipoModificar"];
+        $escudoMod=$_GET["escudoMod"];
+        $puntosMod=$_GET["puntosMod"];
+        $arrayMod[$escudoMod]=$puntosMod;
+        $equipos=Cambiar($equipos,$equipoMod,$arrayMod);
+    }
+}
+else{
+    if(isset($_GET["ModElm"])){
+
+        $boton=$_GET["ModElm"];
+        
+        if($boton == 'Borrar'){
+            echo "<form action='clasificacion1.php' method='get'>
+                Que equipo quieres borrar?: <input type='text' name='EquipoBorrar'/>
+                <input type='submit' value='EliminarEquipo' name='Editar'/>
+              </form>
+                <hr/>";
+        } else {
+            echo "<form action='clasificacion1.php' method='get'>
+                Que equipo quieres modificar?: <input type='text' name='EquipoModificar'/>
+                Escudo: <input type='text' name='escudoMod'/>
+                Puntos: <input type='text' name='puntosMod'/>
+                <input type='submit' value='ModificarEquipo' name='Editar'/>
+              </form>
+                <hr/>";
+        }
+    }
+}
+
+//Acaba el ejerc de borrar y modificar
 
 //HTML
 echo "<form action='clasificacion1.php' method='get'>
@@ -164,4 +242,61 @@ echo cargarDatosTabla($equipos);
 
 insertarBotones($fila);
 
+echo key($partidos) . " " . current($partidos);
+
+echo "<br/>";
+
 echo "El numero de equipos son:" . count($equipos);
+
+echo "<hr/>";
+
+//SESIONES
+
+if(isset($_SESSION["usuario"])){
+    if(isset($_POST["sesion"]) && $_POST["sesion"] == "cerrar"){
+        unset($_SESSION);
+        session_destroy();
+        $_SESSION=array();
+        header('Location: clasificacion1.php');
+    }
+    echo "Bienvenido " . $_SESSION["usuario"];
+    if($_SESSION["usuario"] == "Juan"){
+        echo ". Puedes borrar y modificar los equipos: ";
+        BotonesModElm();
+    }    
+}else{
+    if(isset($_POST["usuario"]) && isset($_POST["pass"])){
+        if(($_POST["usuario"] == "Juan" && $_POST["pass"]) == "1234" || ($_POST["usuario"] == "Maria" && $_POST["pass"] == "1111")){
+            $_SESSION["usuario"] = $_POST["usuario"];
+            echo $_SESSION["usuario"];
+            header('Location: clasificacion1.php');
+        }else{
+            echo "Error al iniciar sesion, intentelo de nuevo";
+        }
+    }else{
+        echo "Debes loguearte para poder editar";
+    }
+}
+
+if(!isset($_SESSION["usuario"])){
+    echo "<form action='clasificacion1.php' method='post'>
+        Usuario: <input type='text' name='usuario'/>
+        Pass: <input type='password' name='pass'/>
+        <input type='submit' value='Login'>
+      </form>";
+}else{
+    echo "<form action='clasificacion1.php' method='post'>
+        Usuario: <input type='text' name='usuario' value='"; echo $_SESSION["usuario"]; echo "'/>
+        <input type='hidden' value='cerrar' name='sesion'/>
+        <input type='submit' value='logout'/>
+      </form>";
+}
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 <?php
 
+//Crea una tabla en mysql, IMPORTANTE TENER CONECTADO MYSQL
 function creaTablaPartidos(){
     // Create connection
     $conn =  dameConexion();//new mysqli($servername, $username, $password, $dbname);

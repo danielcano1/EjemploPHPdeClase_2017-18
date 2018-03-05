@@ -1,5 +1,8 @@
 <<?php
+
+//Funciones de la pagina INDEX. IMPORTANTE TENER ENCENDIDO MYSQL
 function dameConexion(){
+    //Para dar conexion con la bd
     global $SERVIDOR;
     global $USUARIO;
     global $PASS;
@@ -10,6 +13,7 @@ function dameConexion(){
     return $conexion;
 }
 
+//Carga los archivos del .txt y los clasifica, introduciendolos a la tabla
 function inicializarBaseDatos(){
     $conexion = dameConexion(); // new mysqli ('localhost', 'root', '', 'foro');
     $conexion->query("truncate table equipos");
@@ -36,6 +40,7 @@ function introducirDatosenTablaPartidos(){
     $conexion->close();
 }
 
+//Para contar filas y entradas 
 function contarFilas($numEntradas){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="select count(*) from equipos;";
@@ -53,6 +58,8 @@ function contarEntradas(){
     $conexion->close();
     return $numEntradas;
 }
+
+//Para obtener los valores de la tabla de la BASE DE DATOS
 function obtenerImagen($actual){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="
@@ -131,6 +138,7 @@ function obtenerResultado($actual){
     return $resultado;
 };
 
+//Con esto imprimos una tabla con los valores que hemos obtenido de la base de datos
 function imprimirTabla(){
     $actual=0;
     echo "

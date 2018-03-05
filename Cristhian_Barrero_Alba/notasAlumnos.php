@@ -19,6 +19,8 @@ echo "<table><th>Curso</th>
 <th>Nombre</th>
 <th>Nota</th>";
 
+//Foreach para coger todos los datos de los arrays
+
 foreach ($notaAlumno as $curso => $niveles) {
     foreach ($niveles as $nivel => $nombres) {
         foreach ($nombres as $nombre => $nota) {

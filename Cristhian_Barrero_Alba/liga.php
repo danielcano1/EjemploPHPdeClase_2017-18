@@ -1,4 +1,6 @@
 <?php
+
+//Clasificacion bastante normal
 echo "<form action='liga.php' method='get'>
         Equipo: <input type='text' name='equipo'/>
         Escudo: <input type='text' name='escudo'/>

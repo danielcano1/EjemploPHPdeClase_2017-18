@@ -1,4 +1,6 @@
 <?php
+//Prueba de funciones para la base de datos de los usuarios
+
 function introducirDatosenTablaUsuarios(){
     $conexion = dameConexion(); // new mysqli ('localhost', 'root', '', 'foro');
     $conexion->query("truncate table usuarios");

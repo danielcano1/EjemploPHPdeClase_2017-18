@@ -6,7 +6,7 @@
   </head>
   <body>
     <?php
-    
+    //La pagina principal para la base de datos. IMPORTANTE TENER CONECTADO MYSQL
     $SERVIDOR="localhost";
     $USUARIO="root";
     $PASS="";
@@ -18,6 +18,7 @@
     $BBDD="sergio";
     
     */
+    //Incluye las funciones en este php
     include "functions.php";
     include "createTable.php";
       creaTablaPartidos();

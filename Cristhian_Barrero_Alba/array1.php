@@ -1,11 +1,13 @@
 <?php
 
+//Todo tipo de arrays, EJEMPLOS para poner
 //ARRAYS
 
 $numero=array(17, 34, 3=>45, 2, 7=>9, 10=>-5, 7);
 
 echo $numero[4];
 
+//Hacemos un for de la cuenta de cuantos numeros hay.
 $desplazamiento=0;
 for($i=0;$i<(count($numero)+$desplazamiento);$i++){
     if(isset($numero[$i]))
@@ -17,7 +19,7 @@ for($i=0;$i<(count($numero)+$desplazamiento);$i++){
 echo "<br/><br/>";
 
 //FOREACH
-
+//Para ir pasando de un array a otro
 $nota=array("Antonio"=>5, 4, 7, 5=>6, "Luis"=>9, 2, "Berta"=>7);
 foreach ($nota as $i=>$v){
     echo "La nota de $i es $v<br/>";

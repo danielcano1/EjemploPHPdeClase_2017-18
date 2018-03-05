@@ -73,7 +73,8 @@ echo "<br/>";
         echo "</table>";
         $cuenta=count($ligaArray);
         echo "El numero de equipos es ".$cuenta."<br/>";
-        }
+    }
+    //si existe usuario
         if (isset($_SESSION["usuario"])){
             echo "Bienvenido ". $_SESSION["usuario"];
             if (isset($_POST["cerrarSesion"]) && $_POST["cerrarSesion"]=="cerrar"){
@@ -108,10 +109,17 @@ echo "<br/>";
                 	<form action="comunioConSesiones.php" method="get">
                 	<tr>
                 		<td><label for="nombreEquipo">Escriba el nombre del equipo que desea borrar</label></td>
-                		<td><input type="submit" name="nombreEquipo" value="borrar"/></td>
+                		<td><input type="test" name="nombreEquipo"/></td>
+                		<td><input type='submit' value='borrar' name='accion'/></td>
                 	</tr>
                 	<tr>
-                		<td><input type="submit" name="modificar" value="modificar"/></td>
+                		<td><label for="nombreEquipo">Equipo que quieres Modificar: </label></td>
+                		<td><input type='text' name='nombreEquipo'/></td>
+                     	<td><label for="escudo">Escudo: </label></td>
+                     	<td><input type='text' name='escudo'/></td>
+                        <td><label for="puntos">Puntos: </label></td>
+                        <td><input type='text' name='puntos'/></td>
+                		<td><input type="submit" name="accion" value="modificar"/></td>
                 	</tr>
                 	</form>
                 </table><br/>
@@ -232,6 +240,46 @@ echo "<br/>";
                 ksort($ligaArray);
                 reset($ligaArray);
             }
+        }
+        //modificar o borrar
+        function Reemplazar($arrayOrigen, $key, $elementoNuevo){
+            $nuevoArray;
+            
+            reset($arrayOrigen);
+            while(current($arrayOrigen)){
+                if (key($arrayOrigen) == $key){
+                    
+                    A�adirNuevoElemento($nuevoArray,array(key($arrayOrigen) => $elementoNuevo));
+                    
+                }else{
+                    A�adirNuevoElemento($nuevoArray,array(key($arrayOrigen) => current($arrayOrigen)));
+                }
+                next($arrayOrigen);
+            }
+            
+            return $nuevoArray;
+            
+        }
+        
+        function A�adirNuevoElemento(&$array,$nuevoArray){
+            $array = array_merge((array)$array,(array)$nuevoArray);
+        }
+        if (isset($_GET["accion"])){
+            $ModificarOBorrar=$_GET["accion"];
+            $nombreEqModificarOBorrar=$_GET["nombreEquipo"];
+            if ($ModificarOBorrar=="modificar"){
+                $equipoACambiar=$_GET["nombreEquipo"];
+                $puntos=$_GET["puntos"];
+                $escudo=$_GET["escudo"];
+                $nuevoA[$escudo]=$puntos;
+                $ligaArray = Reemplazar($ligaArray, $equipoACambiar, $nuevoA);
+                
+            } else {
+                if ($ModificarOBorrar == "borrar"){
+                    unset($ligaArray[$nombreEqModificarOBorrar]);
+                }
+            }
+            echo cargarDatosEnTabla($ligaArray);
         }
         ?>
 	</body>

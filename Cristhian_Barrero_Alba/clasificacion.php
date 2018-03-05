@@ -1,4 +1,5 @@
 <?php
+//Ejercicio de clasificacion NORMAL
 //VARIABLES GLOBALES
 $fila=0;
 $permisoAnterior=false;
@@ -32,7 +33,7 @@ if(isset($_GET["equipo"]) && isset($_GET["escudo"]) && isset($_GET["puntos"]))
 }
 
 
-//Para desplazarse
+//Para desplazarse del siguiente a anterior
 if(isset($_GET["listado"]) && isset($_GET["posicion"])){
     
     if ($_GET["listado"] == "Anterior"){
@@ -134,6 +135,7 @@ function insertarBotones($posicion){
     echo "</form>";
 }
 
+//Funcion para cargar los datos de la tabla
 function cargarDatosTabla($equipos){
     echo "<table border='1'>
         <th><a href='clasificacion.php?ordena=equipos'>Equipos</a></th>
@@ -141,6 +143,7 @@ function cargarDatosTabla($equipos){
         <th><a href='clasificacion.php?ordena=puntos'>Puntos</a></th>";
     while(current($equipos)){
         echo "<tr>";
+        //Saca todo lo de equipos para ponerlo en escudos y asi poder coger su key.
         $escudos = current($equipos);
         echo "<td>".key($equipos)."</td>";
         echo "<td>"."<img src='".key($escudos)."' width='75px' height='75px'/>"."</td>";

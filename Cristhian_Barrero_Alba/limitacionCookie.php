@@ -1,4 +1,6 @@
 <?php
+
+//Para limitar los login de una pagina con cookies
 $sesionIntentada=0;
 
 if(isset($_COOKIE["sesion"]))

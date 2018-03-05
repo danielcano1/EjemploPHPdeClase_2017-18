@@ -4,6 +4,7 @@
 $arrayUser["Cristhian"]="Asir";
 $hash=password_hash($arrayUser["Cristhian"], PASSWORD_DEFAULT);
 
+//Comprobamos la contraseña con el hash
 if ((password_verify($_POST["pass"], $hash)))
 {
     //VARIABLES GLOBALES   

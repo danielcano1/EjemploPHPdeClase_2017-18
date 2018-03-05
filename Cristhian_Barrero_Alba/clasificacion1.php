@@ -1,4 +1,5 @@
 <?php
+//Ejercicio de clasificacion TOCHO el gordete
 //Sesiones
 session_start();
 //VARIABLES GLOBALES
@@ -172,6 +173,7 @@ function BotonesModElm(){
       </form>";
 }
 
+//Para cambiar valores de array, coger tal cual.
 function Cambiar($equipoOriginal,$equipoAMod,$equipoModificado){
     $EditEquipo;
     reset ($equipoOriginal);
@@ -187,15 +189,18 @@ function Cambiar($equipoOriginal,$equipoAMod,$equipoModificado){
     return $EditEquipo;
 }
 
+//Para insertarlos en el array.
 function InsertarMod(&$Edit,$EditEquipo){
     $Edit = array_merge((array)$Edit,(array)$EditEquipo);
 }
 
+//IF para borrar y editar.
 if(isset($_GET["Editar"]))
 {
     $editarEquipo=$_GET["Editar"];    
     if($editarEquipo == 'EliminarEquipo'){
         $equipoBorr=$_GET["EquipoBorrar"];
+        //Para borrar equipo
         unset($equipos[$equipoBorr]);
     }else{
         $equipoMod=$_GET["EquipoModificar"];
@@ -251,7 +256,7 @@ echo "El numero de equipos son:" . count($equipos);
 echo "<hr/>";
 
 //SESIONES
-
+//Copiar para dar sesion a un php
 if(isset($_SESSION["usuario"])){
     if(isset($_POST["sesion"]) && $_POST["sesion"] == "cerrar"){
         unset($_SESSION);

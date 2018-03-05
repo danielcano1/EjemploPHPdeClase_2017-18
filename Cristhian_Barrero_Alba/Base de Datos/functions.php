@@ -36,7 +36,6 @@ function introducirDatosenTablaPartidos(){
     $conexion->close();
 }
 
-
 function contarFilas($numEntradas){
     $conexion = dameConexion(); //$conexion = new mysqli ('localhost', 'root', '', 'foro');
     $select="select count(*) from equipos;";

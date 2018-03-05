@@ -25,6 +25,7 @@
       introducirDatosenTablaPartidos();
       imprimirTabla();
       imprimirTablaPartidos();
+      
       ?>
   </body>
 </html>

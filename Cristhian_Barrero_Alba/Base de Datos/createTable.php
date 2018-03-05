@@ -39,7 +39,9 @@ function creaTablaUsuarios(){
     $sql = "CREATE TABLE usuarios (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(15) NOT NULL,
-    password VARCHAR(250)
+    password VARCHAR(250),
+    id VARCHAR(20),
+    Entrada INT(6)
     )";
     
     if ($conn->query($sql) === TRUE) {

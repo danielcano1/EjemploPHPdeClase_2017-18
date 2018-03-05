@@ -1,0 +1,4 @@
+Levante|http://www.lafutbolteca.com/wp-content/uploads/2010/01/LEVANTE.jpg|20|1;
+Betis|https://img.vavel.com/real-betis-bob-6154023143.jpg|33|2;
+Ath. Bilbao|http://2.bp.blogspot.com/--bcIfGzj2PQ/UHxNyJIugpI/AAAAAAAAEGU/J0UQ1SWqGAI/s1600/Athletic+Club1.jpg|28|3;
+Sevilla|http://www.estadiodeportivo.com/elementosWeb/gestionCajas/EDE/Image/escudo-sevilla.jpg|36|4;

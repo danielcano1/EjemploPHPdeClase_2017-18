@@ -1,0 +1,6 @@
+Real Madrid-Sevilla|3-2|1;
+Barcelona-Real Madrid|2-0|2;
+Eibar-Levante|0-0|3;
+Eibar-Atletico De Madrid|0-2|4;
+Betis-Levante|2-2|5;
+RealMadrid-Betis|1-2|6;

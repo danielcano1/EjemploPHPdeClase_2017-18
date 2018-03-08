@@ -1,0 +1,4 @@
+Real Madrid|escudo1|42|1;
+Barcelona|escudo2|59|2;
+Valencia|escudo3|43|3;
+Bilbao|escudo4|28|4;

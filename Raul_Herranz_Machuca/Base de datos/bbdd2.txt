@@ -1,0 +1,8 @@
+Real Madrid|Sevila|3-2|1;
+Barcelona|Real Madrid|2-2|2;
+Barcelona|Valencia|3-2|3;
+Barcelona|Betis|5-2|4;
+Atletico|Valencia|3-2|5;
+Valencia|Real Madrid||2-2|6;
+Bilbao|Valencia|5-2|7;
+Bilbao|Getafe|2-3|8;
